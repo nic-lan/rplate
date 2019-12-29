@@ -1,0 +1,6 @@
+require:
+  - rubocop-rspec
+
+
+Layout/LineLength:
+  Max: 100
