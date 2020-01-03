@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe RubyTemplate::Commands::Generate::BuildEntityView do
-  describe ".call" do
+  describe '.call' do
     let(:name) { 'MyEntity' }
     let(:type) { 'class' }
     let(:root) { 'lib' }

@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 module RubyTemplate
   module Commands
     class Generate
+      # BuildEntityView is the class responsible to create the entity view to be saved on file
       class BuildEntityView
         LAYOUT_TEMPLATE = 'templates/entity/layout.erb'
         MODULE_TEMPLATE = 'templates/entity/module.erb'
         RESOURCE_TEMPLATE = 'templates/entity/resource.erb'
         ERB_OPTS = { trim: 0 }.freeze
-        ENTITIES_SPLIT = "::"
+        ENTITIES_SPLIT = '::'
 
-        class Namespace < Struct.new(:name); end
-        class Resource < Struct.new(:name, :type); end
+        Namespace = Struct.new(:name)
+        Resource = Struct.new(:name, :type)
 
         def self.call(entity)
           new(entity).call
