@@ -7,6 +7,7 @@
   zeitwerk
   ostruct
   tilt/erb
+  fileutils
 ].each { |lib| require lib }
 
 loader = Zeitwerk::Loader.for_gem

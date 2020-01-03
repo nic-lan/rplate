@@ -16,9 +16,28 @@ RSpec.describe RubyTemplate::Commands::Generate do
 
     subject { described_class.call(entity_name, options) }
 
-    it 'creates a class ruby file with the right name' do
-      subject
-      expect(result_entity).to eq(result_entity)
+    shared_examples 'creates a class ruby file with the right name' do
+      it 'creates a class ruby file with the right name' do
+        subject
+        expect(result_entity).to eq(result_entity)
+      end
+    end
+
+    it_behaves_like 'creates a class ruby file with the right name'
+
+    context 'when the directories in the entity or root are not existing' do
+      let(:entity_name) { 'Whatever::MyModule::MyClass' }
+      let(:not_xisting_dir) { "#{root}/whatever" }
+
+      before do
+        FileUtils.rm_rf(not_xisting_dir)
+      end
+
+      after do
+        FileUtils.rm_rf(not_xisting_dir)
+      end
+
+      it_behaves_like 'creates a class ruby file with the right name'
     end
   end
 end

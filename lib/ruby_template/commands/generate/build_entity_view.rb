@@ -42,6 +42,10 @@ module RubyTemplate
           Tilt::ERBTemplate.new(template, ERB_OPTS)
         end
 
+        # `render` method is:
+        #   =>  recursive when the current resource is a namespace.
+        #   =>  when the current resource happens to last element in entity_resources,
+        #         then the entity template is rendered by calling `render_entity`
         def render(entity_resources)
           current_resource = entity_resources.shift
 
