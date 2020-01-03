@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
-require 'zeitwerk'
+%w[
+  thor
+  active_support/core_ext/hash
+  hanami-validations
+  zeitwerk
+  ostruct
+  tilt/erb
+].each { |lib| require lib }
+
 loader = Zeitwerk::Loader.for_gem
+
+loader.inflector.inflect(
+  'cli' => 'CLI'
+)
+
 loader.setup
