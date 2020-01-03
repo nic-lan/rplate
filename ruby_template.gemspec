@@ -21,5 +21,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_development_dependency 'activesupport'
+  spec.add_development_dependency 'hanami-validations'
+  spec.add_development_dependency 'thor'
+  spec.add_development_dependency 'tilt'
   spec.add_development_dependency 'zeitwerk'
 end
