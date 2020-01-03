@@ -23,3 +23,9 @@ RSpec.configure do |config|
     mocks.verify_doubled_constant_names = true
   end
 end
+
+FIXTURES_PATH = 'spec/fixtures'
+
+def fixture(filename)
+  File.open("#{FIXTURES_PATH}/#{filename}")
+end

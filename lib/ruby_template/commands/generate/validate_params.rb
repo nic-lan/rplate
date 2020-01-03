@@ -4,8 +4,8 @@ module RubyTemplate
   module Commands
     class Generate
       #
-      # Generate is the validator for the Generate Command
-      class Validator
+      # Generate is the ValidateParams for the Generate Command
+      class ValidateParams
         include Hanami::Validations
 
         ALLOWED_NAME_REGEX = /([a-zA-Z]+)(:{2}|_)?/.freeze
@@ -20,7 +20,7 @@ module RubyTemplate
           end
         end
 
-        def self.validate(class_name, options)
+        def self.call(class_name, options)
           options = options.deep_symbolize_keys.merge(name: class_name)
 
           new(options).validate

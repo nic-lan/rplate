@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-RSpec.describe RubyTemplate::Commands::Generate::Validator do
-  describe '.validate' do
-    subject { described_class.validate(class_name, options) }
+RSpec.describe RubyTemplate::Commands::Generate::ValidateParams do
+  describe '.call' do
+    subject { described_class.call(class_name, options) }
 
     let(:class_name) { 'Whatever' }
     let(:type_value) { 'class' }
