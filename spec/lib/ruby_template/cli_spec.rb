@@ -13,8 +13,8 @@ RSpec.describe RubyTemplate::CLI do
 
     let(:class_name) { 'MyClass' }
     let(:start) { described_class.start(args) }
-    let(:methods_option) { [] }
-    let(:options) { { 'methods' => methods_option, 'type' => type_option, 'root' => 'lib' } }
+    let(:required_methods_option) { [] }
+    let(:options) { { 'required_methods' => required_methods_option, 'type' => type_option, 'root' => 'lib' } }
     let(:type_option) { 'class' }
     let(:args) { ['generate', class_name] }
 
@@ -28,8 +28,8 @@ RSpec.describe RubyTemplate::CLI do
     end
 
     context 'when option m is given' do
-      let(:methods_option) { ['self.perform'] }
-      let(:args) { ['generate', class_name, '-m', methods_option] }
+      let(:required_methods_option) { ['self.perform'] }
+      let(:args) { ['generate', class_name, '-m', required_methods_option] }
 
       it_behaves_like 'sends to Generate class'
     end
