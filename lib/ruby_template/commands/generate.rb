@@ -9,9 +9,11 @@ module RubyTemplate
 
       def self.call(entity_name, options)
         validation_result = Commands::Generate::ValidateParams.call(entity_name, options)
-        return unless validation_result.success?
 
-        new(validation_result.output).call
+        return new(validation_result.output).call if validation_result.success?
+
+        # Test this scenario
+        validation_result.messages
       end
 
       def initialize(entity)
@@ -25,6 +27,7 @@ module RubyTemplate
         build_nested_dirs(filename)
 
         File.open(filename, 'w') { |f| f.write(entity_view) }
+        puts 'hello'
         system('rubocop', filename, '-a')
       end
 

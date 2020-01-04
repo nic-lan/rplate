@@ -24,5 +24,3 @@ module RubyTemplate
     end
   end
 end
-
-# ruby_template build Whatever -t class -m self.perform perform
