@@ -6,7 +6,15 @@ RSpec.describe RubyTemplate::Commands::Generate do
   describe '.perform' do
     let(:entity_name) { 'MyClass' }
     let(:root) { 'spec/fixtures/out' }
-    let(:options) { { root: root, name: entity_name, type: 'class', methods: [] } }
+    let(:require_methods) { [] }
+    let(:options) do
+      {
+        root: root,
+        name: entity_name,
+        type: 'class',
+        require_methods: require_methods
+      }
+    end
 
     let(:fixture_filename) { 'my_class.rb' }
     let(:expected_entity) { fixture(fixture_filename).read }
@@ -36,6 +44,15 @@ RSpec.describe RubyTemplate::Commands::Generate do
       after do
         FileUtils.rm_rf(not_xisting_dir)
       end
+
+      it_behaves_like 'creates a class ruby file with the right name'
+    end
+
+    context 'when some methods and namespaces' do
+      let(:entity_name) { 'Whatever::MyClass' }
+      let(:fixture_filename) { 'my_namespaced_class_with_methods.rb' }
+      let(:result_filename) { 'out/whatever/my_class.rb' }
+      let(:require_methods) { ['initialize', 'perform'] }
 
       it_behaves_like 'creates a class ruby file with the right name'
     end

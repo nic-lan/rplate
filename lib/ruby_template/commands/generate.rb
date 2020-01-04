@@ -25,6 +25,7 @@ module RubyTemplate
         build_nested_dirs(filename)
 
         File.open(filename, 'w') { |f| f.write(entity_view) }
+        system('rubocop', filename, '-a')
       end
 
       private

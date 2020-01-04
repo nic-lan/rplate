@@ -29,3 +29,7 @@ FIXTURES_PATH = 'spec/fixtures'
 def fixture(filename)
   File.open("#{FIXTURES_PATH}/#{filename}")
 end
+
+def without_empty_lines(string)
+  string.gsub(/^\s*$\n/, "")
+end

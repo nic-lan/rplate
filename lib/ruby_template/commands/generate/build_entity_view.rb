@@ -8,10 +8,14 @@ module RubyTemplate
         LAYOUT_TEMPLATE = 'templates/entity/layout.erb'
         MODULE_TEMPLATE = 'templates/entity/module.erb'
         RESOURCE_TEMPLATE = 'templates/entity/resource.erb'
+        METHOD_TEMPLATE = 'templates/entity/method.erb'
+
         ERB_OPTS = { trim: 0 }.freeze
+
         ENTITIES_SPLIT = '::'
 
         Namespace = Struct.new(:name)
+        Method = Struct.new(:name)
         Resource = Struct.new(:name, :type)
 
         def self.call(entity)
@@ -61,7 +65,22 @@ module RubyTemplate
         def render_entity(entity_name)
           resource = Resource.new(entity_name, entity.type)
 
-          template(RESOURCE_TEMPLATE).render(resource)
+          template(RESOURCE_TEMPLATE).render(resource) do
+            render_methods
+          end
+        end
+
+        def render_methods
+          entity
+            .required_methods
+            .map { |method_name| render_method(method_name) }
+            .join("\n")
+        end
+
+        def render_method(method_name)
+          method = Method.new(method_name)
+
+          template(METHOD_TEMPLATE).render(method)
         end
       end
     end
