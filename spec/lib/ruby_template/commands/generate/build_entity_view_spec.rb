@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe RubyTemplate::Commands::Generate::BuildEntityView do
   describe '.call' do
-    let(:name) { 'MyEntity' }
+    let(:name) { 'MyClass' }
     let(:type) { 'class' }
     let(:root) { 'lib' }
     let(:required_methods) { [] }
@@ -26,21 +26,22 @@ RSpec.describe RubyTemplate::Commands::Generate::BuildEntityView do
 
     context 'when type is module' do
       let(:type) { 'module' }
+      let(:name) { 'MyModule' }
       let(:fixture_filename) { 'my_module.rb' }
 
       it { is_expected.to match(expected_view) }
     end
 
     context 'when name is scoped within one namespace' do
-      let(:name) { 'Whatever::MyEntity' }
+      let(:name) { 'MyModule::MyClass' }
 
-      let(:fixture_filename) { 'my_namespaced_class.rb' }
+      let(:fixture_filename) { 'my_module/my_class.rb' }
 
       it { is_expected.to match(expected_view) }
     end
 
     context 'when methods are present' do
-      let(:name) { 'MyEntity' }
+      let(:name) { 'MyClassWithMethods' }
       let(:fixture_filename) { 'my_class_with_methods.rb' }
       let(:required_methods) { ['self.call', 'initialize', 'call'] }
 

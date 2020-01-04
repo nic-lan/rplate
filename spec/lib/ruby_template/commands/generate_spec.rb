@@ -49,9 +49,9 @@ RSpec.describe RubyTemplate::Commands::Generate do
     end
 
     context 'when some methods and namespaces' do
-      let(:entity_name) { 'Whatever::MyClass' }
-      let(:fixture_filename) { 'my_namespaced_class_with_methods.rb' }
-      let(:result_filename) { 'out/whatever/my_class.rb' }
+      let(:entity_name) { 'MyModule::MyClassWithMethods' }
+      let(:fixture_filename) { 'my_module/my_class_with_methods.rb' }
+      let(:result_filename) { 'my_module/my_class_with_methods.rb' }
       let(:require_methods) { ['initialize', 'perform'] }
 
       it_behaves_like 'creates a class ruby file with the right name'

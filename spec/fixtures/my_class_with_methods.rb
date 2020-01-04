@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-# The MyEntity class is responsible for TODO
-class MyEntity
-
+# The MyClassWithMethods class is responsible for TODO
+class MyClassWithMethods
   def self.call
   end
 
@@ -11,5 +10,4 @@ class MyEntity
 
   def call
   end
-
 end

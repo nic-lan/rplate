@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-# The MyEntity class is responsible for TODO
-class MyEntity
+# The MyClass class is responsible for TODO
+class MyClass
 end
