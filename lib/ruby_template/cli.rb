@@ -11,9 +11,9 @@ module RubyTemplate
     end
 
     desc 'generate CLASS_NAME', 'generate a ruby class with the given name'
-    option :type, aliases: '-t', default: 'class', type: :string
-    option :methods, aliases: '-m', default: [], type: :array
-    option :root, aliases: '-r', default: 'lib', type: :string
+    option :type, aliases: '-t', default: 'class', type: :string, desc: '`class` or `module`'
+    option :methods, aliases: '-m', default: [], type: :array, desc: 'the class methods'
+    option :root, aliases: '-r', default: 'lib', type: :string, desc: 'example: `app/controllers`'
     def generate(entity_name)
       Commands::Generate.call(entity_name, options)
     end
