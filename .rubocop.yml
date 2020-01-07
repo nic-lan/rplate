@@ -16,6 +16,9 @@ RSpec/NamedSubject:
 RSpec/MultipleExpectations:
   Enabled: false
 
+Style/EmptyMethod:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'

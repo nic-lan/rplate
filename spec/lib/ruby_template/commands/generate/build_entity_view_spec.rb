@@ -43,7 +43,7 @@ RSpec.describe RubyTemplate::Commands::Generate::BuildEntityView do
     context 'when methods are present' do
       let(:name) { 'MyClassWithMethods' }
       let(:fixture_filename) { 'my_class_with_methods.rb' }
-      let(:required_methods) { ['self.call', 'initialize', 'call'] }
+      let(:required_methods) { ['initialize', 'self.perform'] }
 
       it { is_expected.to match(expected_view) }
     end

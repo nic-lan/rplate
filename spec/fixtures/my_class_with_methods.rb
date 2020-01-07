@@ -2,12 +2,9 @@
 
 # The MyClassWithMethods class is responsible for TODO
 class MyClassWithMethods
-  def self.call
-  end
-
   def initialize
   end
 
-  def call
+  def self.perform
   end
 end

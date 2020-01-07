@@ -15,7 +15,7 @@ module RubyTemplate
         validations do
           required(:name) { str? & format?(ALLOWED_NAME_REGEX) }
           required(:type) { str? & included_in?(ALLOWED_TYPES) }
-          required(:methods) do
+          required(:required_methods) do
             array? { each { str? & format?(ALLOWED_METHODS_REGEX) } }
           end
         end

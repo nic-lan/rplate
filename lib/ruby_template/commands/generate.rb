@@ -7,13 +7,14 @@ module RubyTemplate
     class Generate
       class Entity < OpenStruct; end
 
+      class Error < StandardError; end
+
       def self.call(entity_name, options)
         validation_result = Commands::Generate::ValidateParams.call(entity_name, options)
 
-        return new(validation_result.output).call if validation_result.success?
+        raise Error, validation_result.messages unless validation_result.success?
 
-        # Test this scenario
-        validation_result.messages
+        new(validation_result.output).call
       end
 
       def initialize(entity)
