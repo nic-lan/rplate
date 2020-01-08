@@ -54,5 +54,5 @@ RSpec.describe RubyTemplate::Commands::Generate do
         expect { subject }.to raise_error(described_class::Error)
       end
     end
-   end
+  end
 end

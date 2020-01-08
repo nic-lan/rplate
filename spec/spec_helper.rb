@@ -40,5 +40,5 @@ def fixture(filename)
 end
 
 def without_empty_lines(string)
-  string.gsub(/^\s*$\n/, "")
+  string.gsub(/^\s*$\n/, '')
 end

@@ -5,18 +5,24 @@ require 'spec_helper'
 RSpec.describe RubyTemplate::CLI do
   describe '.start' do
     shared_examples 'sends to Generate class' do
-      it 'with the given option' do
-        expect(RubyTemplate::Commands::Generate).to receive(:call).with(class_name, options)
-        start
+      it 'does not raise' do
+        expect { start }.not_to raise_error
       end
     end
 
     let(:class_name) { 'MyClass' }
     let(:start) { described_class.start(args) }
     let(:required_methods_option) { [] }
-    let(:options) { { 'required_methods' => required_methods_option, 'type' => type_option, 'root' => 'lib' } }
+    let(:options) do
+      { 'required_methods' => required_methods_option, 'type' => type_option, 'root' => 'lib' }
+    end
     let(:type_option) { 'class' }
     let(:args) { ['generate', class_name] }
+    let(:generate_command) { double(:command, call: true) }
+
+    before do
+      allow(RubyTemplate::Commands::Generate).to receive(:new) { generate_command }
+    end
 
     it_behaves_like 'sends to Generate class'
 

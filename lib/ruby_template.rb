@@ -8,6 +8,7 @@
   ostruct
   tilt/erb
   fileutils
+  rubocop
 ].each { |lib| require lib }
 
 loader = Zeitwerk::Loader.for_gem

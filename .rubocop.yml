@@ -19,6 +19,9 @@ RSpec/MultipleExpectations:
 Style/EmptyMethod:
   Enabled: false
 
+RSpec/VerifiedDoubles:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
