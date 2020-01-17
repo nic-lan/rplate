@@ -24,6 +24,7 @@ module RubyTemplate
       def call
         entity_view = BuildEntityView.call(entity)
         filename = BuildFilename.call(entity)
+        
 
         build_nested_dirs(filename)
 
