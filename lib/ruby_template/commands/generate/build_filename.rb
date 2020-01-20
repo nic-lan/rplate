@@ -12,11 +12,24 @@ module RubyTemplate
       # @example Scoped entity name
       #     Whatever::MyClass #=> lib/whatever/my_class.rb
       class BuildFilename
-        #
-        # @param entity_name [Object] The entity we want to generate the filename from
-        # @return [String] The built filename
-        def self.call(entity)
-          "#{entity.root}/#{entity.name}.rb".underscore
+        class << self
+          #
+          # @param entity_name [Object] The entity we want to generate the filename from
+          # @return [String] The built filename
+          def call(entity, opts = {})
+            filename = build_filename(entity, opts)
+            prefix_path = 'spec' if opts[:env] == :spec
+
+            [prefix_path, entity.root, filename].compact.join('/').underscore
+          end
+
+          private
+
+          def build_filename(entity, opts)
+            postfix = '_spec' if opts[:env] == :spec
+
+            "#{entity.name}#{postfix}.rb"
+          end
         end
       end
     end

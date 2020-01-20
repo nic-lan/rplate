@@ -11,7 +11,8 @@ module RubyTemplate
         def self.call(filename, entity_view)
           path = filename.split('/')
           path.pop
-          FileUtils.mkdir_p(path.join('/'))
+          to_create_path = path.join('/')
+          FileUtils.mkdir_p(to_create_path)
 
           File.open(filename, 'w') { |f| f.write(entity_view) }
           RuboCop::CLI.new.run([filename, '-a'])

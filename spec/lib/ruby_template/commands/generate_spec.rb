@@ -21,26 +21,26 @@ RSpec.describe RubyTemplate::Commands::Generate do
 
     shared_examples 'create the required ruby files' do
       let(:fixture_filename) { "#{entity_name.underscore}.rb" }
-      let(:expected_entity) { fixture(fixture_filename).read }
+      let(:expected_entity) { fixture(fixture_filename) }
 
       let(:result_filename) { "out/#{fixture_filename}" }
-      let(:result_entity) { fixture(result_filename).read }
+      let(:result_entity) { fixture(result_filename, prefix_path: false) }
 
-      let(:fixture_filename_spec) { "#{entity_name.underscore}_spec.rb" }
-      let(:expected_entity_spec) { fixture(fixture_filename_spec).read }
+      let(:fixture_filename_spec) { "spec/#{entity_name.underscore}_spec.rb" }
+      let(:expected_entity_spec) { fixture(fixture_filename_spec) }
 
-      let(:result_filename_spec) { "out/#{fixture_filename_spec}" }
-      let(:result_entity_spec) { fixture(result_filename_spec).read }
+      let(:result_filename_spec) { "spec/#{root}/#{entity_name.underscore}_spec.rb" }
+      let(:result_entity_spec) { fixture(result_filename_spec, prefix_path: false) }
 
       it 'creates the entity ruby file' do
         subject
         expect(result_entity).to eq(expected_entity)
       end
-      #
-      # it 'creates the related spec file' do
-      #   subject
-      #   expect(result_entity_spec).to eq(expected_entity_spec)
-      # end
+
+      it 'creates the related spec file' do
+        subject
+        expect(result_entity_spec).to eq(expected_entity_spec)
+      end
     end
 
     it_behaves_like 'create the required ruby files'

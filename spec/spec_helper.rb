@@ -5,7 +5,7 @@ require 'byebug'
 require 'ruby_template'
 
 FIXTURES_PATH = 'spec/fixtures'
-OUT_PATH = 'spec/fixtures/out'
+OUT_PATH = 'out'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -25,18 +25,12 @@ RSpec.configure do |config|
     # exist to raise, protecting against incorrectly spelt names.
     mocks.verify_doubled_constant_names = true
   end
-
-  config.before do
-    FileUtils.rm_rf(OUT_PATH)
-  end
-
-  config.after do
-    FileUtils.rm_rf(OUT_PATH)
-  end
 end
 
-def fixture(filename)
-  File.open("#{FIXTURES_PATH}/#{filename}")
+def fixture(filename, prefix_path: true)
+  prefix = FIXTURES_PATH if prefix_path == true
+  file_path = [prefix, filename].compact.join('/')
+  File.open(file_path).read
 end
 
 def without_empty_lines(string)

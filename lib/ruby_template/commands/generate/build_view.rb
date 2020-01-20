@@ -11,13 +11,13 @@ module RubyTemplate
         Method = Struct.new(:name)
         Resource = Struct.new(:name, :type)
 
-        def self.call(entity, entity_resources, templates = {})
-          new(entity, entity_resources, templates).call
+        def self.call(entity, templates = {}, opts = {})
+          new(entity, templates, opts).call
         end
 
-        def initialize(entity, entity_resources, templates)
+        def initialize(entity, templates, opts)
           @entity = entity
-          @entity_resources = entity_resources
+          @opts = opts
           @templates = templates
         end
 
@@ -29,7 +29,11 @@ module RubyTemplate
 
         private
 
-        attr_reader :entity, :entity_resources, :templates
+        attr_reader :entity, :templates, :opts
+
+        def entity_resources
+          @_entity_resources ||= opts[:entity_resources] || []
+        end
 
         def template(template)
           Tilt::ERBTemplate.new(template, ERB_OPTS)
@@ -42,6 +46,7 @@ module RubyTemplate
         def render(entity_resources)
           current_resource = entity_resources.shift
 
+          return render_entity(entity.name) if opts[:env] == :spec
           return render_entity(current_resource) if entity_resources.empty?
 
           namespace = Namespace.new(current_resource)

@@ -3,12 +3,11 @@
 module RubyTemplate
   module Commands
     class Generate
-      # BuildEntityView is the class responsible to create the entity view to be saved on file
-      class BuildEntityView
-        LAYOUT_TEMPLATE = 'templates/entity/layout.erb'
-        MODULE_TEMPLATE = 'templates/entity/module.erb'
-        RESOURCE_TEMPLATE = 'templates/entity/resource.erb'
-        METHOD_TEMPLATE = 'templates/entity/method.erb'
+      # BuildEntitySpecView is the class responsible to create the entity spec view to be saved on file
+      class BuildEntitySpecView
+        LAYOUT_TEMPLATE = 'templates/entity_spec/layout.erb'
+        RESOURCE_TEMPLATE = 'templates/entity_spec/resource.erb'
+        METHOD_TEMPLATE = 'templates/entity_spec/method.erb'
 
         ENTITIES_SPLIT = '::'
 

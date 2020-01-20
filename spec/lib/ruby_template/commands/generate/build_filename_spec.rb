@@ -15,7 +15,9 @@ RSpec.describe RubyTemplate::Commands::Generate::BuildFilename do
       )
     end
 
-    subject { described_class.call(entity) }
+    let(:opts) { {} }
+
+    subject { described_class.call(entity, opts) }
 
     it { is_expected.to eq('lib/my_class.rb') }
 
@@ -29,6 +31,12 @@ RSpec.describe RubyTemplate::Commands::Generate::BuildFilename do
       let(:root) { 'app/controllers' }
 
       it { is_expected.to eq('app/controllers/my_class.rb') }
+    end
+
+    context 'when a postfix is given' do
+      let(:opts) { { env: :spec } }
+
+      it { is_expected.to eq('spec/lib/my_class_spec.rb') }
     end
   end
 end
