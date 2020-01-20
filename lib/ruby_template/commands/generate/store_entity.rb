@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 module RubyTemplate
   module Commands
     class Generate
+      #
+      # StoreEntity is the class responsible for:
+      # => storing an entity_view string into a file with the given filename
+      # => applying existing rubocops
       class StoreEntity
         def self.call(filename, entity_view)
           path = filename.split('/')
