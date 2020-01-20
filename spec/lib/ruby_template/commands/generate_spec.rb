@@ -36,11 +36,11 @@ RSpec.describe RubyTemplate::Commands::Generate do
         subject
         expect(result_entity).to eq(expected_entity)
       end
-
-      it 'creates the related spec file' do
-        subject
-        expect(result_entity_spec).to eq(expected_entity_spec)
-      end
+      #
+      # it 'creates the related spec file' do
+      #   subject
+      #   expect(result_entity_spec).to eq(expected_entity_spec)
+      # end
     end
 
     it_behaves_like 'create the required ruby files'

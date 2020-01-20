@@ -10,13 +10,7 @@ module RubyTemplate
         RESOURCE_TEMPLATE = 'templates/entity/resource.erb'
         METHOD_TEMPLATE = 'templates/entity/method.erb'
 
-        ERB_OPTS = { trim: 0 }.freeze
-
         ENTITIES_SPLIT = '::'
-
-        Namespace = Struct.new(:name)
-        Method = Struct.new(:name)
-        Resource = Struct.new(:name, :type)
 
         def self.call(entity)
           new(entity).call
@@ -27,11 +21,14 @@ module RubyTemplate
         end
 
         def call
-          entity_resources = build_entity_resources
-
-          template(LAYOUT_TEMPLATE).render do
-            render(entity_resources)
-          end
+          BuildView.call(
+            entity,
+            build_entity_resources,
+            layout: LAYOUT_TEMPLATE,
+            module: MODULE_TEMPLATE,
+            resource: RESOURCE_TEMPLATE,
+            method: METHOD_TEMPLATE
+          )
         end
 
         private
@@ -40,47 +37,6 @@ module RubyTemplate
 
         def build_entity_resources
           entity.name.split(ENTITIES_SPLIT)
-        end
-
-        def template(template)
-          Tilt::ERBTemplate.new(template, ERB_OPTS)
-        end
-
-        # `render` method is:
-        #   =>  recursive when the current resource is a namespace.
-        #   =>  when the current resource happens to last element in entity_resources,
-        #         then the entity template is rendered by calling `render_entity`
-        def render(entity_resources)
-          current_resource = entity_resources.shift
-
-          return render_entity(current_resource) if entity_resources.empty?
-
-          namespace = Namespace.new(current_resource)
-
-          template(MODULE_TEMPLATE).render(namespace) do
-            render(entity_resources)
-          end
-        end
-
-        def render_entity(entity_name)
-          resource = Resource.new(entity_name, entity.type)
-
-          template(RESOURCE_TEMPLATE).render(resource) do
-            render_methods
-          end
-        end
-
-        def render_methods
-          entity
-            .required_methods
-            .map { |method_name| render_method(method_name) }
-            .join("\n")
-        end
-
-        def render_method(method_name)
-          method = Method.new(method_name)
-
-          template(METHOD_TEMPLATE).render(method)
         end
       end
     end

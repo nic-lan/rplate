@@ -24,23 +24,13 @@ module RubyTemplate
       def call
         entity_view = BuildEntityView.call(entity)
         filename = BuildFilename.call(entity)
-        
 
-        build_nested_dirs(filename)
-
-        File.open(filename, 'w') { |f| f.write(entity_view) }
-        RuboCop::CLI.new.run([filename, '-a'])
+        StoreEntity.call(filename, entity_view)
       end
 
       private
 
       attr_reader :entity
-
-      def build_nested_dirs(filename)
-        path = filename.split('/')
-        path.pop
-        FileUtils.mkdir_p(path.join('/'))
-      end
     end
   end
 end
