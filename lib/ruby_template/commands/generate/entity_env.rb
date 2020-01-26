@@ -6,17 +6,19 @@ module RubyTemplate
       class EntityEnv
         class Error < StandardError; end
 
+        TEMPLATES_DIR = 'lib/templates'
+
         TEMPLATES = {
           default: {
-            layout: 'templates/entity/layout.erb',
-            module: 'templates/entity/module.erb',
-            resource: 'templates/entity/resource.erb',
-            method: 'templates/entity/method.erb'
+            layout: "#{TEMPLATES_DIR}/entity/layout.erb",
+            module: "#{TEMPLATES_DIR}/entity/module.erb",
+            resource: "#{TEMPLATES_DIR}/entity/resource.erb",
+            method: "#{TEMPLATES_DIR}/entity/method.erb"
           },
           spec: {
-            layout: 'templates/entity_spec/layout.erb',
-            resource: 'templates/entity_spec/resource.erb',
-            method: 'templates/entity_spec/method.erb'
+            layout: "#{TEMPLATES_DIR}/entity_spec/layout.erb",
+            resource: "#{TEMPLATES_DIR}/entity_spec/resource.erb",
+            method: "#{TEMPLATES_DIR}/entity_spec/method.erb"
           }
         }.freeze
 

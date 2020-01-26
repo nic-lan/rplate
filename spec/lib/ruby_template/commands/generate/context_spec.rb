@@ -14,9 +14,9 @@ RSpec.describe RubyTemplate::Commands::Generate::Context do
 
     it 'returns a spec context templates' do
       expect(subject.templates).to eq(
-        layout: 'templates/entity_spec/layout.erb',
-        method: 'templates/entity_spec/method.erb',
-        resource: 'templates/entity_spec/resource.erb'
+        layout: 'lib/templates/entity_spec/layout.erb',
+        method: 'lib/templates/entity_spec/method.erb',
+        resource: 'lib/templates/entity_spec/resource.erb'
       )
     end
 
@@ -28,10 +28,10 @@ RSpec.describe RubyTemplate::Commands::Generate::Context do
       let(:env) { :default }
       let(:templates) do
         {
-          layout: 'templates/entity/layout.erb',
-          method: 'templates/entity/method.erb',
-          module: 'templates/entity/module.erb',
-          resource: 'templates/entity/resource.erb'
+          layout: 'lib/templates/entity/layout.erb',
+          method: 'lib/templates/entity/method.erb',
+          module: 'lib/templates/entity/module.erb',
+          resource: 'lib/templates/entity/resource.erb'
         }
       end
 
@@ -47,10 +47,10 @@ RSpec.describe RubyTemplate::Commands::Generate::Context do
         let(:entity_name) { 'MyModule::MyClass' }
         let(:templates) do
           {
-            layout: 'templates/entity/layout.erb',
-            method: 'templates/entity/method.erb',
-            module: 'templates/entity/module.erb',
-            resource: 'templates/entity/resource.erb'
+            layout: 'lib/templates/entity/layout.erb',
+            method: 'lib/templates/entity/method.erb',
+            module: 'lib/templates/entity/module.erb',
+            resource: 'lib/templates/entity/resource.erb'
           }
         end
 

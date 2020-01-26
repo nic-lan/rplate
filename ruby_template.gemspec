@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'lib/ruby_template/version'
+$LOAD_PATH.unshift File.expand_path('lib', __dir__)
+require 'ruby_template/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'ruby_template'
