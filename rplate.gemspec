@@ -23,10 +23,10 @@ Gem::Specification.new do |spec|
   spec.executables   = ['rplate']
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activesupport'
-  spec.add_dependency 'hanami-validations'
-  spec.add_dependency 'rubocop'
-  spec.add_dependency 'thor'
-  spec.add_dependency 'tilt'
-  spec.add_dependency 'zeitwerk'
+  spec.add_dependency 'activesupport', '6.0.2'
+  spec.add_dependency 'hanami-validations', '1.3'
+  spec.add_dependency 'rubocop', '0.78'
+  spec.add_dependency 'thor', '1.0'
+  spec.add_dependency 'tilt', '2.0'
+  spec.add_dependency 'zeitwerk', '2.2'
 end
