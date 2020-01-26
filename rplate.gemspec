@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path('lib', __dir__)
+lp = File.expand_path('lib', __dir__)
+$LOAD_PATH.unshift(lp) unless $LOAD_PATH.include?(lp)
+
 require 'rplate/version'
 
 Gem::Specification.new do |spec|

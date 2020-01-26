@@ -19,3 +19,7 @@ loader.inflector.inflect(
 )
 
 loader.setup
+
+# This needs to stay. Somehow otherwise the RPlate constant is not lodead when called
+module RPlate
+end
