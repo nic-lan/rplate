@@ -1,4 +1,4 @@
-# RubyTemplate
+# RPlate
 
 This gem is just a template generator for ruby classes.
 
@@ -9,7 +9,7 @@ Add this line to your application's Gemfile:
 Install it yourself as:
 
 ```console
-  $ gem install ruby_template
+  $ gem install rplate
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/nic-lan/ruby_template](https://github.com/nic-lan/ruby_template).
+Bug reports and pull requests are welcome on GitHub at [https://github.com/nic-lan/rplate](https://github.com/nic-lan/rplate).
 
 
 ## License

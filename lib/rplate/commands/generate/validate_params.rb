@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RubyTemplate
+module RPlate
   module Commands
     class Generate
       #

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruby_template (0.1.0)
+    rplate (0.1.0)
       activesupport
       hanami-validations
       rubocop
@@ -105,9 +105,9 @@ PLATFORMS
 DEPENDENCIES
   byebug
   rake (~> 12.0)
+  rplate!
   rspec (~> 3.0)
   rubocop-rspec
-  ruby_template!
 
 BUNDLED WITH
    2.1.4

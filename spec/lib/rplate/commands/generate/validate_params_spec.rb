@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RubyTemplate::Commands::Generate::ValidateParams do
+RSpec.describe RPlate::Commands::Generate::ValidateParams do
   describe '.call' do
     subject { described_class.call(class_name, options) }
 

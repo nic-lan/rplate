@@ -14,7 +14,8 @@
 loader = Zeitwerk::Loader.for_gem
 
 loader.inflector.inflect(
-  'cli' => 'CLI'
+  'cli' => 'CLI',
+  'rplate' => 'RPlate'
 )
 
 loader.setup

@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 
-RSpec.describe RubyTemplate::Commands::Generate::BuildFilename do
+RSpec.describe RPlate::Commands::Generate::BuildFilename do
   describe '.call' do
     let(:name) { 'MyClass' }
     let(:root) { 'lib' }
     let(:entity) do
-      RubyTemplate::Commands::Generate::Entity.new(
+      RPlate::Commands::Generate::Entity.new(
         name: name,
         methods: [],
         type: 'class',

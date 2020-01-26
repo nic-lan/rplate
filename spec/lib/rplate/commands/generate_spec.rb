@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RubyTemplate::Commands::Generate do
+RSpec.describe RPlate::Commands::Generate do
   describe '.perform' do
     let(:entity_name) { 'MyClass' }
     let(:root) { OUT_PATH }

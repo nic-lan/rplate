@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RubyTemplate::CLI do
+RSpec.describe RPlate::CLI do
   describe '.start' do
     shared_examples 'sends to Generate class' do
       it 'does not raise' do
@@ -21,7 +21,7 @@ RSpec.describe RubyTemplate::CLI do
     let(:generate_command) { double(:command, call: true) }
 
     before do
-      allow(RubyTemplate::Commands::Generate).to receive(:new) { generate_command }
+      allow(RPlate::Commands::Generate).to receive(:new) { generate_command }
     end
 
     it_behaves_like 'sends to Generate class'

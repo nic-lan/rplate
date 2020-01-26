@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-RSpec.describe RubyTemplate::Commands::Generate::BuildView do
+RSpec.describe RPlate::Commands::Generate::BuildView do
   describe '.call' do
     let(:entity_name) { 'MyClass' }
     let(:entity) do
-      RubyTemplate::Commands::Generate::Entity.new(
+      RPlate::Commands::Generate::Entity.new(
         root: 'out',
         name: entity_name,
         type: 'class',

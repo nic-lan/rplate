@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe RubyTemplate::Commands::Generate::Context do
+RSpec.describe RPlate::Commands::Generate::Context do
   describe '.create' do
     let(:entity_name) { 'MyClass' }
     let(:entity) { double('entity', name: entity_name) }
     let(:env) { :spec }
 
     let(:entity_env) do
-      RubyTemplate::Commands::Generate::EntityEnv.new(env)
+      RPlate::Commands::Generate::EntityEnv.new(env)
     end
 
     subject { described_class.create(entity, env: entity_env) }

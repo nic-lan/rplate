@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RubyTemplate
+module RPlate
   #
   # CLI is the container for the gem commands
   class CLI < Thor

@@ -2,7 +2,7 @@
 
 require 'bundler/setup'
 require 'byebug'
-require 'ruby_template'
+require 'rplate'
 
 FIXTURES_PATH = 'spec/fixtures'
 OUT_PATH = 'out'
