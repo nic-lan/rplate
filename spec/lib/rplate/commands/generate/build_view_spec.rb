@@ -15,10 +15,10 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
     end
 
     let(:templates) do
-      { layout: 'lib/templates/entity/layout.erb',
-        module: 'lib/templates/entity/module.erb',
-        resource: 'lib/templates/entity/resource.erb',
-        method: 'lib/templates/entity/method.erb' }
+      { layout: 'templates/entity/layout.erb',
+        module: 'templates/entity/module.erb',
+        resource: 'templates/entity/resource.erb',
+        method: 'templates/entity/method.erb' }
     end
     let(:opts) { { entity_resources: ['MyClass'], env: :default } }
 
@@ -30,9 +30,9 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
 
     context 'when spec environment' do
       let(:templates) do
-        { layout: 'lib/templates/entity_spec/layout.erb',
-          resource: 'lib/templates/entity_spec/resource.erb',
-          method: 'lib/templates/entity_spec/method.erb' }
+        { layout: 'templates/entity_spec/layout.erb',
+          resource: 'templates/entity_spec/resource.erb',
+          method: 'templates/entity_spec/method.erb' }
       end
       let(:opts) { { env: :spec } }
 

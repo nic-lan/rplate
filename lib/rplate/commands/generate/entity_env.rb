@@ -6,7 +6,7 @@ module RPlate
       class EntityEnv
         class Error < StandardError; end
 
-        TEMPLATES_DIR = 'lib/templates'
+        TEMPLATES_DIR = 'templates'
 
         TEMPLATES = {
           default: {
