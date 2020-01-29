@@ -22,8 +22,15 @@ will place:
 
 #### Allowed arguments
 
+Rplate accepts some arguments. Check that by calling the help:
+
 ```console
 rplate help generate
+```
+
+That will result in:
+
+```console
 Usage:
   rplate generate CLASS_NAME
 
