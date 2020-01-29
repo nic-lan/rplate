@@ -9,8 +9,8 @@ module RPlate
       class Error < StandardError; end
 
       ENTITY_ENVS = [
-        EntityEnv.new(:default),
-        EntityEnv.new(:spec)
+        Environment.new(:default),
+        Environment.new(:spec)
       ].freeze
 
       def self.call(entity_name, options)

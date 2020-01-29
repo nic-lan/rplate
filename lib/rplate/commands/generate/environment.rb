@@ -3,7 +3,8 @@
 module RPlate
   module Commands
     class Generate
-      class EntityEnv
+      # The Environment defines the allowed environments for the Generate command
+      class Environment
         class Error < StandardError; end
 
         TEMPLATES_DIR = 'templates'

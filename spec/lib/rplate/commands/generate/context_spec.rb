@@ -7,7 +7,7 @@ RSpec.describe RPlate::Commands::Generate::Context do
     let(:env) { :spec }
 
     let(:entity_env) do
-      RPlate::Commands::Generate::EntityEnv.new(env)
+      RPlate::Commands::Generate::Environment.new(env)
     end
 
     subject { described_class.create(entity, env: entity_env) }

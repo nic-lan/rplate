@@ -3,7 +3,8 @@
 module RPlate
   module Commands
     class Generate
-      # BuildEntitySpecView is the class responsible to create the entity spec view to be saved on file
+      # BuildEntitySpecView is the class responsible to:
+      # => create the entity spec view to be saved on file
       class BuildEntitySpecView
         LAYOUT_TEMPLATE = 'templates/entity_spec/layout.erb'
         RESOURCE_TEMPLATE = 'templates/entity_spec/resource.erb'

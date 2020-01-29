@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RPlate::Commands::Generate::EntityEnv do
+RSpec.describe RPlate::Commands::Generate::Environment do
   describe '#templates' do
     let(:env) { :default }
 
