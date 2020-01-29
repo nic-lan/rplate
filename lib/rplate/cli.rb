@@ -4,12 +4,6 @@ module RPlate
   #
   # CLI is the container for the gem commands
   class CLI < Thor
-    include Thor::Actions
-
-    def self.source_root
-      File.dirname(__FILE__)
-    end
-
     desc 'generate CLASS_NAME', 'generate a ruby class with the given name'
     option :type, aliases: '-t', default: 'class', type: :string, desc: '`class` or `module`'
     option :required_methods, aliases: '-m', default: [], type: :array, desc: 'the class methods'

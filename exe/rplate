@@ -4,8 +4,6 @@
 lp = File.expand_path('../lib', __dir__)
 $LOAD_PATH.unshift(lp) unless $LOAD_PATH.include?(lp)
 
-puts lp
-
 require 'rplate'
 
 RPlate::CLI.start(ARGV)

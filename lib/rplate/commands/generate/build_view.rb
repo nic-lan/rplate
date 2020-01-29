@@ -7,6 +7,10 @@ module RPlate
       class BuildView
         ERB_OPTS = { trim: 0 }.freeze
 
+        # GEM_ROOT_PATH needs to be defined here as constant
+        # This allow the path to be evaluated from inside the gem and not from where the gem is run
+        GEM_ROOT_PATH = RPlate.gem_root_path.freeze
+
         Namespace = Struct.new(:name)
         Method = Struct.new(:name)
         Resource = Struct.new(:name, :type)
@@ -36,7 +40,8 @@ module RPlate
         end
 
         def template(template)
-          Tilt::ERBTemplate.new(template, ERB_OPTS)
+          template_path = "#{GEM_ROOT_PATH}/#{template}"
+          Tilt::ERBTemplate.new(template_path, ERB_OPTS)
         end
 
         # `render` method is:

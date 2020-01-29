@@ -25,6 +25,9 @@ RSpec/VerifiedDoubles:
 RSpec/NestedGroups:
   Max: 4
 
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
