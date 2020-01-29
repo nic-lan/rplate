@@ -31,3 +31,11 @@ Naming/MemoizedInstanceVariableName:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+RSpec/FilePath:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'spec/fixtures/**/*'
+    - 'spec/out/**/*'
