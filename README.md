@@ -1,10 +1,8 @@
 # RPlate
 
-This gem is just a template generator for ruby classes.
+Rplate is an opinionated template generator for ruby entities.
 
 ## Installation
-
-Add this line to your application's Gemfile:
 
 Install it yourself as:
 
@@ -13,6 +11,31 @@ Install it yourself as:
 ```
 
 ## Usage
+
+```console
+rplate generate MyClass
+```
+
+will place:
+- a Myclass class in `lib/my_class.rb`
+- the related spec file in `spec/lib/my_class_spec.rb`
+
+#### Allowed arguments
+
+```console
+rplate help generate
+Usage:
+  rplate generate CLASS_NAME
+
+Options:
+  -t, [--type=TYPE]                       # `class` or `module`
+                                          # Default: class
+  -m, [--required-methods=one two three]  # the class methods
+  -r, [--root=ROOT]                       # example: `app/controllers`
+                                          # Default: lib
+
+generate a ruby entity with the given name
+```
 
 ## Development
 
