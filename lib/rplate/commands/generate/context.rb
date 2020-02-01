@@ -12,13 +12,10 @@ module RPlate
           private
 
           def build_opts(entity, env)
-            build_additional_opts(entity, env.env).merge(env: env.env)
-          end
-
-          def build_additional_opts(entity, env)
-            return {} if env == :spec
-
-            { entity_resources: entity.name.split('::') }
+            {
+              env: env.env,
+              entity_constants: EntityConstants.fetch(entity)
+            }
           end
         end
       end

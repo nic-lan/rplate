@@ -36,8 +36,10 @@ module RPlate
       attr_reader :entity
 
       def execute_context(context, entity)
-        entity_view = BuildView.call(entity, context.templates, context.opts)
-        filename = BuildFilename.call(entity, context.opts)
+        context_opts = context.opts
+        build_view_opts = Marshal.load(Marshal.dump(context_opts))
+        entity_view = BuildView.call(entity, context.templates, build_view_opts)
+        filename = BuildFilename.call(entity, context_opts)
 
         StoreEntity.call(filename, entity_view)
       end

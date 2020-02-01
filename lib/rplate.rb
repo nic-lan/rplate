@@ -3,6 +3,7 @@
 %w[
   thor
   active_support/core_ext/hash
+  active_support/core_ext/string/inflections
   hanami-validations
   zeitwerk
   ostruct

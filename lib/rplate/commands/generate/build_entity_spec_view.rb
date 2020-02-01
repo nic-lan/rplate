@@ -23,7 +23,7 @@ module RPlate
         def call
           BuildView.call(
             entity,
-            build_entity_resources,
+            build_entity_constants,
             layout: LAYOUT_TEMPLATE,
             module: MODULE_TEMPLATE,
             resource: RESOURCE_TEMPLATE,
@@ -35,7 +35,7 @@ module RPlate
 
         attr_reader :entity
 
-        def build_entity_resources
+        def build_entity_constants
           entity.name.split(ENTITIES_SPLIT)
         end
       end

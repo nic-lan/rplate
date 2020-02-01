@@ -28,6 +28,30 @@ RSpec.describe RPlate::Commands::Generate::ValidateParams do
       end
     end
 
+    context 'when name is downcase' do
+      let(:class_name) { 'my_class' }
+
+      it 'is success' do
+        expect(subject).to be_success
+      end
+    end
+
+    context 'when name is downcase with namespace' do
+      let(:class_name) { 'my_module/my_class' }
+
+      it 'is success' do
+        expect(subject).to be_success
+      end
+    end
+
+    context 'when name is downcase with namespace with : separation' do
+      let(:class_name) { 'my_module:my_class' }
+
+      it 'is success' do
+        expect(subject).to be_success
+      end
+    end
+
     context 'when name is blank' do
       let(:class_name) { '' }
 

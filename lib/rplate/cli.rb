@@ -12,6 +12,11 @@ module RPlate
       Commands::Generate.call(entity_name, options)
     end
 
+    desc 'version', 'return the current version of rplate'
+    def version
+      puts VERSION
+    end
+
     def self.exit_on_failure?
       puts 'failure'
       true

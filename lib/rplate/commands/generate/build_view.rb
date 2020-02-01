@@ -27,7 +27,7 @@ module RPlate
 
         def call
           template(templates[:layout]).render do
-            render(entity_resources)
+            render(entity_constants)
           end
         end
 
@@ -35,8 +35,8 @@ module RPlate
 
         attr_reader :entity, :templates, :opts
 
-        def entity_resources
-          @_entity_resources ||= opts[:entity_resources] || []
+        def entity_constants
+          @_entity_constants ||= opts[:entity_constants] || []
         end
 
         def template(template)
@@ -46,18 +46,18 @@ module RPlate
 
         # `render` method is:
         #   =>  recursive when the current resource is a namespace.
-        #   =>  when the current resource happens to last element in entity_resources,
+        #   =>  when the current resource happens to last element in entity_constants,
         #         then the entity template is rendered by calling `render_entity`
-        def render(entity_resources)
-          current_resource = entity_resources.shift
+        def render(entity_constants)
+          return render_entity(entity_constants.join('::')) if opts[:env] == :spec
 
-          return render_entity(entity.name) if opts[:env] == :spec
-          return render_entity(current_resource) if entity_resources.empty?
+          current_resource = entity_constants.shift
+          return render_entity(current_resource) if entity_constants.empty?
 
           namespace = Namespace.new(current_resource)
 
           template(templates[:module]).render(namespace) do
-            render(entity_resources)
+            render(entity_constants)
           end
         end
 
