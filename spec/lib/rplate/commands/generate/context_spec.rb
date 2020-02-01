@@ -5,62 +5,50 @@ RSpec.describe RPlate::Commands::Generate::Context do
     let(:entity_name) { 'MyClass' }
     let(:entity) { double('entity', name: entity_name) }
     let(:env) { :spec }
-
+    let(:env_templates) do
+      {
+        one: :template,
+        another: :template
+      }
+    end
     let(:entity_env) do
-      RPlate::Commands::Generate::Environment.new(env)
+      instance_double('RPlate::Commands::Generate::Environment',
+                      templates: env_templates,
+                      env: env)
     end
 
     subject { described_class.create(entity, env: entity_env) }
 
-    it 'returns a spec context templates' do
-      expect(subject.templates).to eq(
-        layout: 'templates/entity_spec/layout.erb',
-        method: 'templates/entity_spec/method.erb',
-        resource: 'templates/entity_spec/resource.erb'
+    it 'returns templates in the environment' do
+      expect(subject.templates).to eq(env_templates)
+    end
+
+    it 'opts includes the environment and the entity_constants' do
+      expect(subject.opts).to eq(
+        entity_constants: %w[MyClass],
+        env: env
       )
     end
 
-    it 'returns a spec context opts' do
-      expect(subject.opts).to eq(env: :spec)
-    end
+    context 'when the name is splittable in multiple resources by `::`' do
+      let(:entity_name) { 'MyModule::MyClass' }
 
-    context 'when the given context is an entity' do
-      let(:env) { :default }
-      let(:templates) do
-        {
-          layout: 'templates/entity/layout.erb',
-          method: 'templates/entity/method.erb',
-          module: 'templates/entity/module.erb',
-          resource: 'templates/entity/resource.erb'
-        }
-      end
-
-      it 'returns a default context' do
-        expect(subject.templates).to eq(templates)
+      it 'returns a default context with splitted entity_constants' do
         expect(subject.opts).to eq(
-          entity_resources: %w[MyClass],
+          entity_constants: %w[MyModule MyClass],
           env: env
         )
       end
+    end
 
-      context 'when the name is splittable in multiple resources' do
-        let(:entity_name) { 'MyModule::MyClass' }
-        let(:templates) do
-          {
-            layout: 'templates/entity/layout.erb',
-            method: 'templates/entity/method.erb',
-            module: 'templates/entity/module.erb',
-            resource: 'templates/entity/resource.erb'
-          }
-        end
+    context 'when the name is underscore`' do
+      let(:entity_name) { 'my_class' }
 
-        it 'returns a default context with splitted entity_resources' do
-          expect(subject.templates).to eq(templates)
-          expect(subject.opts).to eq(
-            entity_resources: %w[MyModule MyClass],
-            env: env
-          )
-        end
+      it 'returns a default context with splitted entity_constants' do
+        expect(subject.opts).to eq(
+          entity_constants: %w[MyClass],
+          env: env
+        )
       end
     end
   end

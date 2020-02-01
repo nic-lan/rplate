@@ -6,37 +6,49 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
   describe '.call' do
     let(:entity_name) { 'MyClass' }
     let(:entity) do
-      RPlate::Commands::Generate::Entity.new(
-        root: 'out',
-        name: entity_name,
-        type: 'class',
-        required_methods: []
-      )
+      double(:entity,
+             root: 'out',
+             name: entity_name,
+             type: 'class',
+             required_methods: [])
     end
 
-    let(:templates) do
-      { layout: 'templates/entity/layout.erb',
-        module: 'templates/entity/module.erb',
-        resource: 'templates/entity/resource.erb',
-        method: 'templates/entity/method.erb' }
+    let(:default_templates) do
+      RPlate::Commands::Generate::Environment::TEMPLATES[:default]
     end
-    let(:opts) { { entity_resources: ['MyClass'], env: :default } }
 
-    let(:expected_view) { fixture('my_class.rb') }
+    let(:spec_templates) do
+      RPlate::Commands::Generate::Environment::TEMPLATES[:spec]
+    end
+    let(:templates) { default_templates }
+    let(:entity_constants) { ['MyClass'] }
+    let(:env) { :default }
+    let(:opts) { { entity_constants: entity_constants, env: env } }
 
     subject { described_class.call(entity, templates, opts) }
 
-    it { is_expected.to match(entity_name) }
+    it { is_expected.to match("class MyClass\n") }
 
     context 'when spec environment' do
-      let(:templates) do
-        { layout: 'templates/entity_spec/layout.erb',
-          resource: 'templates/entity_spec/resource.erb',
-          method: 'templates/entity_spec/method.erb' }
-      end
-      let(:opts) { { env: :spec } }
+      let(:env) { :spec }
+      let(:templates) { spec_templates }
 
-      it { is_expected.to match(entity_name) }
+      it { is_expected.to match("RSpec.describe MyClass do\n") }
+    end
+
+    context 'when the entity resources has more than one element' do
+      let(:entity_constants) { %w[MyModule MyClass] }
+
+      it { is_expected.to match("class MyClass\n") }
+      it { is_expected.to match("module MyModule\n") }
+    end
+
+    context 'when the entity resource has more than one element and in spec environment' do
+      let(:entity_constants) { %w[MyModule MyClass] }
+      let(:templates) { spec_templates }
+      let(:env) { :spec }
+
+      it { is_expected.to match("RSpec.describe MyModule::MyClass do\n") }
     end
   end
 end
