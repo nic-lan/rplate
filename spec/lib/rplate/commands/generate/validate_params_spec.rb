@@ -36,7 +36,25 @@ RSpec.describe RPlate::Commands::Generate::ValidateParams do
       end
     end
 
-    context 'when name is downcase with namespace' do
+    context 'when name is downcase with spaces' do
+      let(:class_name) { 'my_module my_class' }
+
+      it 'is not success' do
+        expect(subject).not_to be_success
+        expect(subject.messages).to include(name: ['is in invalid format'])
+      end
+    end
+
+    context 'when name is downcase with spaces' do
+      let(:class_name) { 'MyModule MyClass' }
+
+      it 'is not success' do
+        expect(subject).not_to be_success
+        expect(subject.messages).to include(name: ['is in invalid format'])
+      end
+    end
+
+    context 'when name is downcase and splitted by `:`' do
       let(:class_name) { 'my_module/my_class' }
 
       it 'is success' do
@@ -54,6 +72,24 @@ RSpec.describe RPlate::Commands::Generate::ValidateParams do
 
     context 'when name is blank' do
       let(:class_name) { '' }
+
+      it 'is not success' do
+        expect(subject).not_to be_success
+        expect(subject.messages).to include(name: ['is in invalid format'])
+      end
+    end
+
+    context 'when name is start with number and underscore' do
+      let(:class_name) { '2class' }
+
+      it 'is not success' do
+        expect(subject).not_to be_success
+        expect(subject.messages).to include(name: ['is in invalid format'])
+      end
+    end
+
+    context 'when name is start with number' do
+      let(:class_name) { '2Class' }
 
       it 'is not success' do
         expect(subject).not_to be_success

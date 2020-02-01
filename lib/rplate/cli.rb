@@ -18,7 +18,6 @@ module RPlate
     end
 
     def self.exit_on_failure?
-      puts 'failure'
       true
     end
   end
