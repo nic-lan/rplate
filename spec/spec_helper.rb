@@ -25,6 +25,11 @@ RSpec.configure do |config|
     # exist to raise, protecting against incorrectly spelt names.
     mocks.verify_doubled_constant_names = true
   end
+
+  config.before(:suite) do
+    FileUtils.rm_rf(OUT_PATH)
+    FileUtils.rm_rf("spec/#{OUT_PATH}")
+  end
 end
 
 def fixture(filename, prefix_path: true)
