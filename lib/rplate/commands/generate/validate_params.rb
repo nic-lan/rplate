@@ -8,7 +8,9 @@ module RPlate
       class ValidateParams
         include Hanami::Validations
 
-        ALLOWED_NAME_REGEX = /([a-zA-Z]+)(:{2}|_)?/.freeze
+        CONSTANT_REGEX = /[A-Za-z]\w*/.freeze
+        SPLIT_REGEX = %r{:{1,2}|/}.freeze
+        ALLOWED_NAME_REGEX = /\A#{CONSTANT_REGEX}(#{SPLIT_REGEX}#{CONSTANT_REGEX})?\z/.freeze
         ALLOWED_TYPES = %w[class module].freeze
         ALLOWED_METHODS_REGEX = /(self.)?([a-z]+_?)/.freeze
 
