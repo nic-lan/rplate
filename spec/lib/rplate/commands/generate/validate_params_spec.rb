@@ -68,6 +68,14 @@ RSpec.describe RPlate::Commands::Generate::ValidateParams do
       it 'is success' do
         expect(subject).to be_success
       end
+
+      context 'when multiple nastings' do
+        let(:class_name) { 'my_module:my_class:sub' }
+
+        it 'is success' do
+          expect(subject).to be_success
+        end
+      end
     end
 
     context 'when name is blank' do
