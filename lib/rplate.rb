@@ -21,6 +21,7 @@ loader.inflector.inflect(
 
 loader.setup
 
+# `Rplate` is the main gem namespace
 module RPlate
   def self.gem_root_path
     File.expand_path(File.join(File.dirname(__dir__)))
