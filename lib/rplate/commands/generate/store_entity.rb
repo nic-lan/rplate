@@ -10,13 +10,11 @@ module RPlate
       class StoreEntity
         # GEM_ROOT_PATH needs to be defined here as constant
         # This allow the path to be evaluated from inside the gem and not from where the gem is run
-        RUBOCOP_FILE_PATH = "#{RPlate.gem_root_path}/.rubocop.yml"
+        RUBOCOP_FILE_PATH = "#{RPlate.gem_root_path.freeze}/.rubocop.yml"
 
-        def self.call(filename, entity_view)
-          path = filename.split('/')
-          path.pop
-          to_create_path = path.join('/')
-          FileUtils.mkdir_p(to_create_path)
+        def self.call(filename, entity, context)
+          build_view_opts = Marshal.load(Marshal.dump(context.opts))
+          entity_view = BuildView.call(entity, context.templates, build_view_opts)
 
           File.open(filename, 'w') { |f| f.write(entity_view) }
 

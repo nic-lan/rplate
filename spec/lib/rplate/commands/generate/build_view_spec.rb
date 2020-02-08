@@ -36,14 +36,33 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
       it { is_expected.to match("RSpec.describe MyClass do\n") }
     end
 
-    context 'when the entity resources has more than one element' do
+    context 'when the entity constants are more than one element' do
       let(:entity_constants) { %w[MyModule MyClass] }
 
       it { is_expected.to match("class MyClass\n") }
       it { is_expected.to match("module MyModule\n") }
     end
 
-    context 'when the entity resource has more than one element and in spec environment' do
+    context 'when the entity constants namespace is already existing' do
+      let(:entity_constants) { %w[MyNamespace MyClass] }
+
+      before do
+        FileUtils.mkdir_p('out') unless File.directory?('out')
+        FileUtils.cp 'spec/fixtures/my_namespace.rb', 'out/my_namespace.rb'
+      end
+
+      after do
+        File.delete('out/my_namespace.rb')
+      end
+
+      it { is_expected.to match("class MyClass\n") }
+
+      it 'sets the right type for the already existing namespace entity' do
+        expect(subject).to match("class MyNamespace\n")
+      end
+    end
+
+    context 'when the entity constants are more than one element and in spec environment' do
       let(:entity_constants) { %w[MyModule MyClass] }
       let(:templates) { spec_templates }
       let(:env) { :spec }

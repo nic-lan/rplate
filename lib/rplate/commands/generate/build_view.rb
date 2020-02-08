@@ -11,7 +11,6 @@ module RPlate
         # This allow the path to be evaluated from inside the gem and not from where the gem is run
         GEM_ROOT_PATH = RPlate.gem_root_path.freeze
 
-        Namespace = Struct.new(:name)
         Method = Struct.new(:name)
         Resource = Struct.new(:name, :type)
 
@@ -27,7 +26,9 @@ module RPlate
 
         def call
           template(templates[:layout]).render do
-            render(entity_constants)
+            entity_constants_copy = Marshal.load(Marshal.dump(entity_constants))
+
+            render(entity_constants_copy)
           end
         end
 
@@ -46,18 +47,24 @@ module RPlate
 
         # `render` method is:
         #   =>  recursive when the current resource is a namespace.
-        #   =>  when the current resource happens to last element in entity_constants,
+        #   =>  when the current resource happens to last element in current_entity_constants,
         #         then the entity template is rendered by calling `render_entity`
-        def render(entity_constants)
-          return render_entity(entity_constants.join('::')) if opts[:env] == :spec
+        def render(current_entity_constants)
+          return render_entity(current_entity_constants.join('::')) if opts[:env] == :spec
 
-          current_resource = entity_constants.shift
-          return render_entity(current_resource) if entity_constants.empty?
+          current_constant = current_entity_constants.shift
+          return render_entity(current_constant) if current_entity_constants.empty?
 
-          namespace = Namespace.new(current_resource)
+          render_namespace(current_constant) do
+            render(current_entity_constants)
+          end
+        end
+
+        def render_namespace(current_constant)
+          namespace = Namespace.new(current_constant, entity_constants, entity.root)
 
           template(templates[:module]).render(namespace) do
-            render(entity_constants)
+            yield
           end
         end
 
