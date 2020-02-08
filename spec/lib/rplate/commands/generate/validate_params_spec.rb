@@ -9,7 +9,10 @@ RSpec.describe RPlate::Commands::Generate::ValidateParams do
     let(:class_name) { 'Whatever' }
     let(:type_value) { 'class' }
     let(:methods_value) { [] }
-    let(:options) { { 'type' => type_value, 'required_methods' => methods_value } }
+    let(:options) do
+      { 'type' => type_value,
+        'required_methods' => methods_value }
+    end
 
     it { is_expected.to be_success }
 

@@ -15,7 +15,8 @@ RSpec.describe RPlate::CLI do
     let(:start) { described_class.start(args) }
     let(:required_methods_option) { [] }
     let(:options) do
-      { 'required_methods' => required_methods_option, 'type' => type_option, 'root' => 'lib' }
+      { 'required_methods' => required_methods_option, 'type' => type_option,
+        'root' => 'lib' }
     end
     let(:type_option) { 'class' }
     let(:args) { ['generate', class_name] }

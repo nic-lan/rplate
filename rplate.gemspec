@@ -18,7 +18,12 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   spec.files = Dir[
-    'README.md', 'LICENSE.txt', 'exe/**/*', 'lib/**/{*,.[a-z]*}', 'templates/**/{*,.[a-z]*}'
+    'README.md',
+    'LICENSE.txt',
+    'exe/**/*',
+    'lib/**/{*,.[a-z]*}',
+    'templates/**/{*,.[a-z]*}',
+    '.rubocop.yml'
   ]
 
   spec.bindir        = 'exe'
