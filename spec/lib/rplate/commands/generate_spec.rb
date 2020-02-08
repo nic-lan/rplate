@@ -31,7 +31,10 @@ RSpec.describe RPlate::Commands::Generate do
       let(:expected_entity_spec) { fixture(fixture_filename_spec) }
 
       let(:result_filename_spec) { "spec/#{root}/#{base_filename}_spec.rb" }
-      let(:result_entity_spec) { fixture(result_filename_spec, prefix_path: false) }
+      let(:result_entity_spec) do
+        fixture(result_filename_spec,
+                prefix_path: false)
+      end
 
       before { subject }
 

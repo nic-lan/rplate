@@ -21,7 +21,6 @@ loader.inflector.inflect(
 
 loader.setup
 
-# This needs to stay. Somehow otherwise the RPlate constant is not lodead when called
 module RPlate
   def self.gem_root_path
     File.expand_path(File.join(File.dirname(__dir__)))

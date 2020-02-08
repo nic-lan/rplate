@@ -3,6 +3,7 @@ require:
 
 Layout/LineLength:
   Max: 100
+  AutoCorrect: true
 
 RSpec/MessageSpies:
   Enabled: false

@@ -14,7 +14,9 @@ module RPlate
       ].freeze
 
       def self.call(entity_name, options)
-        validation_result = Commands::Generate::ValidateParams.call(entity_name, options)
+        validation_result = Commands::Generate::ValidateParams.call(
+          entity_name, options
+        )
 
         raise Error, validation_result.messages unless validation_result.success?
 
