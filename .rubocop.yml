@@ -39,7 +39,11 @@ RSpec/FilePath:
 Layout/EndAlignment:
   AutoCorrect: true
 
+Layout/DefEndAlignment:
+  AutoCorrect: true
+
 AllCops:
   Exclude:
     - 'spec/fixtures/**/*'
     - 'spec/out/**/*'
+    - '*.gemspec'
