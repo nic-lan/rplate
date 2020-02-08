@@ -15,6 +15,7 @@ module RPlate
           FileUtils.mkdir_p(to_create_path)
 
           File.open(filename, 'w') { |f| f.write(entity_view) }
+          system("bundle install")
           RuboCop::CLI.new.run([filename, '-a'])
         end
       end
