@@ -20,6 +20,11 @@ will place:
 - a Myclass class in `lib/my_class.rb`
 - the related spec file in `spec/lib/my_class_spec.rb`
 
+Once those files have been generated `rplate` will run rubocop on them according to the styleguide in `.rubocop.yml`.
+
+###### Note
+Currently it is not supported the use of a custom rubocop styleguide.
+
 #### Allowed arguments
 
 Rplate accepts some arguments. Check that by calling the help:
