@@ -2,6 +2,10 @@
 
 Rplate is an opinionated template generator for ruby entities.
 
+In particular in order to take full advantage of rplate features your naming conventions must follow the [zeitwerk filestructure](https://github.com/fxn/zeitwerk#file-structure).
+
+Good news to be mentioned is that from rails 6 [zeitwerk gem](https://github.com/fxn/zeitwerk) is the default require engine and you are probably good to go :-)
+
 ## Installation
 
 Install it yourself as:
