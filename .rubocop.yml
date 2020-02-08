@@ -36,6 +36,9 @@ Metrics/BlockLength:
 RSpec/FilePath:
   Enabled: false
 
+Layout/EndAlignment:
+  AutoCorrect: true
+
 AllCops:
   Exclude:
     - 'spec/fixtures/**/*'
