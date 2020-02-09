@@ -80,7 +80,10 @@ RSpec.describe RPlate::Commands::Generate do
       let(:type) { 'invalid' }
 
       it 'raises' do
-        expect { subject }.to raise_error(described_class::Error)
+        expect(RPlate::Logger).to receive(:info).with(type: ['must be one of: class, module'])
+        expect(described_class).not_to receive(:new)
+
+        subject
       end
     end
   end

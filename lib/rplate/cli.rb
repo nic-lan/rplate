@@ -6,8 +6,21 @@ module RPlate
   class CLI < Thor
     desc 'generate CLASS_NAME', 'generate a ruby class with the given name'
     option :type, aliases: '-t', default: 'class', type: :string, desc: '`class` or `module`'
-    option :required_methods, aliases: '-m', default: [], type: :array, desc: 'the class methods'
-    option :root, aliases: '-r', default: 'lib', type: :string, desc: 'example: `app/controllers`'
+
+    option :required_methods,
+           aliases: '-m',
+           default: [],
+           type: :array,
+           desc: 'example: `-m self.perform initialize`'
+
+    option :root, aliases: '-r', default: 'lib', type: :string, desc: 'example `-r app/controllers`'
+
+    option :inflections,
+           aliases: '-i',
+           type: :array,
+           default: [],
+           desc: 'example: -i rplate:RPlate api:API'
+
     def generate(entity_name)
       Commands::Generate.call(entity_name, options)
     end

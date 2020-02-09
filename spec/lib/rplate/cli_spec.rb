@@ -6,7 +6,9 @@ RSpec.describe RPlate::CLI do
   describe '.start' do
     shared_examples 'sends to Generate class' do
       it 'does not raise' do
-        allow(RPlate::Commands::Generate).to receive(:new) { generate_command }
+        expect(RPlate::Commands::Generate).to receive(:new).with(expected_entity) do
+          generate_command
+        end
         expect { start }.not_to raise_error
       end
     end
@@ -14,13 +16,23 @@ RSpec.describe RPlate::CLI do
     let(:class_name) { 'MyClass' }
     let(:start) { described_class.start(args) }
     let(:required_methods_option) { [] }
+    let(:inflections) { [] }
     let(:options) do
-      { 'required_methods' => required_methods_option, 'type' => type_option,
+      { 'required_methods' => required_methods_option,
+        'type' => type_option,
+        'inflections' => inflections,
         'root' => 'lib' }
     end
     let(:type_option) { 'class' }
     let(:args) { ['generate', class_name] }
     let(:generate_command) { double(:command, call: true) }
+    let(:expected_entity) do
+      options.merge(name: class_name).deep_symbolize_keys
+    end
+
+    before do
+      allow(RPlate::Logger).to receive(:info)
+    end
 
     it_behaves_like 'sends to Generate class'
 
@@ -38,10 +50,25 @@ RSpec.describe RPlate::CLI do
       it_behaves_like 'sends to Generate class'
     end
 
+    context 'when option i is given' do
+      let(:inflections) { ['rplate:RPLATE', 'api:API'] }
+      let(:args) { ['generate', class_name, '-i', inflections] }
+
+      it_behaves_like 'sends to Generate class'
+    end
+
     context 'when an underscore name is given' do
       let(:class_name) { 'my_class' }
 
       it_behaves_like 'sends to Generate class'
+    end
+
+    context 'when an invalid option is given' do
+      let(:args) { ['generate', '-1'] }
+
+      it 'logs out and exits' do
+        expect { start }.not_to raise_error
+      end
     end
   end
 end

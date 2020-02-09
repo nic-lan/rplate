@@ -18,9 +18,9 @@ module RPlate
           entity_name, options
         )
 
-        raise Error, validation_result.messages unless validation_result.success?
+        return new(validation_result.output).call if validation_result.success?
 
-        new(validation_result.output).call
+        RPlate::Logger.info(validation_result.messages)
       end
 
       def initialize(entity)
