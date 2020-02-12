@@ -16,19 +16,19 @@ module RPlate
           #
           # @param entity_name [Object] The entity we want to generate the filename from
           # @return [String] The built filename
-          def call(entity, opts = {})
-            filename = build_filename(opts)
-            prefix_path = 'spec' if opts[:env] == :spec
+          def call(entity, env)
+            filename = build_filename(entity.name, env)
+            prefix_path = 'spec' if env == :spec
 
             [prefix_path, entity.root, filename].compact.join('/')
           end
 
           private
 
-          def build_filename(opts)
-            postfix = '_spec' if opts[:env] == :spec
+          def build_filename(entity_names, env)
+            postfix = '_spec' if env == :spec
 
-            "#{opts[:entity_constants].map(&:underscore).join('/')}#{postfix}.rb"
+            "#{entity_names.join('/')}#{postfix}.rb"
           end
         end
       end

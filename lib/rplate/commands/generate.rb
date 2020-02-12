@@ -8,9 +8,9 @@ module RPlate
       class Entity < OpenStruct; end
       class Error < StandardError; end
 
-      ENTITY_ENVS = [
-        Environment.new(:default),
-        Environment.new(:spec)
+      CONTEXTS = [
+        Context.new(:default),
+        Context.new(:spec)
       ].freeze
 
       def self.call(entity_name, options)
@@ -18,9 +18,9 @@ module RPlate
           entity_name, options
         )
 
-        return new(validation_result.output).call if validation_result.success?
+        return new(validation_result.to_h).call if validation_result.success?
 
-        RPlate::Logger.info(validation_result.messages)
+        RPlate::Logger.info(validation_result.errors.to_h)
       end
 
       def initialize(entity)
@@ -28,20 +28,16 @@ module RPlate
       end
 
       def call
-        ENTITY_ENVS
-          .map { |entity_env| Context.create(entity, env: entity_env) }
-          .each { |context| execute_context(context, entity) }
+        CONTEXTS.each do |context|
+          filename = PrepareFilesystem.call(entity, context)
+
+          StoreEntity.call(filename, entity, context)
+        end
       end
 
       private
 
       attr_reader :entity
-
-      def execute_context(context, entity)
-        filename = PrepareFilesystem.call(entity, context)
-
-        StoreEntity.call(filename, entity, context)
-      end
     end
   end
 end

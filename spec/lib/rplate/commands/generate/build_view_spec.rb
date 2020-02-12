@@ -4,13 +4,15 @@ require 'spec_helper'
 
 RSpec.describe RPlate::Commands::Generate::BuildView do
   describe '.call' do
-    let(:entity_name) { 'MyClass' }
+    let(:entity_name) { %w[my_class] }
+    let(:inflections) { [] }
     let(:entity) do
       double(:entity,
              root: 'out',
              name: entity_name,
              type: 'class',
-             required_methods: [])
+             required_methods: [],
+             inflections: inflections)
     end
 
     let(:default_templates) do
@@ -20,31 +22,28 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
     let(:spec_templates) do
       RPlate::Commands::Generate::Environment::TEMPLATES[:spec]
     end
-    let(:templates) { default_templates }
-    let(:entity_constants) { ['MyClass'] }
     let(:env) { :default }
-    let(:opts) { { entity_constants: entity_constants, env: env } }
+    let(:context) { RPlate::Commands::Generate::Context.new(env) }
 
-    subject { described_class.call(entity, templates, opts) }
+    subject { described_class.call(entity, context) }
 
     it { is_expected.to match("class MyClass\n") }
 
     context 'when spec environment' do
       let(:env) { :spec }
-      let(:templates) { spec_templates }
 
       it { is_expected.to match("RSpec.describe MyClass do\n") }
     end
 
     context 'when the entity constants are more than one element' do
-      let(:entity_constants) { %w[MyModule MyClass] }
+      let(:entity_name) { %w[my_module my_class] }
 
       it { is_expected.to match("class MyClass\n") }
       it { is_expected.to match("module MyModule\n") }
     end
 
     context 'when the entity constants namespace is already existing' do
-      let(:entity_constants) { %w[MyNamespace MyClass] }
+      let(:entity_name) { %w[my_namespace my_class] }
 
       before do
         FileUtils.mkdir_p('out') unless File.directory?('out')
@@ -63,8 +62,7 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
     end
 
     context 'when the entity constants are more than one element and in spec environment' do
-      let(:entity_constants) { %w[MyModule MyClass] }
-      let(:templates) { spec_templates }
+      let(:entity_name) { %w[my_module my_class] }
       let(:env) { :spec }
 
       it { is_expected.to match("RSpec.describe MyModule::MyClass do\n") }

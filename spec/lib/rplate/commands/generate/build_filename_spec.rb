@@ -5,14 +5,19 @@ require 'spec_helper'
 RSpec.describe RPlate::Commands::Generate::BuildFilename do
   describe '.call' do
     let(:root) { 'lib' }
-    let(:entity) { double(:entity, root: root) }
-    let(:entity_constants) { %w[MyClass] }
+    let(:entity) { double(:entity, name: entity_constants, root: root) }
+    let(:entity_constants) { %w[my_class] }
     let(:env) { :default }
-    let(:opts) { { env: env, entity_constants: entity_constants } }
 
-    subject { described_class.call(entity, opts) }
+    subject { described_class.call(entity, env) }
 
     it { is_expected.to eq('lib/my_class.rb') }
+
+    context 'when opts env is spec' do
+      let(:env) { :spec }
+
+      it { is_expected.to eq('spec/lib/my_class_spec.rb') }
+    end
 
     context 'when the given root differs from default one' do
       let(:root) { 'app/controllers' }
@@ -26,14 +31,8 @@ RSpec.describe RPlate::Commands::Generate::BuildFilename do
       end
     end
 
-    context 'when opts env is spec' do
-      let(:env) { :spec }
-
-      it { is_expected.to eq('spec/lib/my_class_spec.rb') }
-    end
-
     context 'when opts provides multiple entity_constants' do
-      let(:entity_constants) { %w[Whatever MyClass] }
+      let(:entity_constants) { %w[whatever my_class] }
 
       it { is_expected.to eq('lib/whatever/my_class.rb') }
 

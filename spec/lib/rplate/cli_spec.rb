@@ -5,15 +5,16 @@ require 'spec_helper'
 RSpec.describe RPlate::CLI do
   describe '.start' do
     shared_examples 'sends to Generate class' do
-      it 'does not raise' do
+      it 'succeeds' do
         expect(RPlate::Commands::Generate).to receive(:new).with(expected_entity) do
           generate_command
         end
-        expect { start }.not_to raise_error
+        expect(RPlate::Logger).not_to receive(:info)
+        start
       end
     end
 
-    let(:class_name) { 'MyClass' }
+    let(:class_name) { %w[my_class] }
     let(:start) { described_class.start(args) }
     let(:required_methods_option) { [] }
     let(:inflections) { [] }
@@ -57,17 +58,25 @@ RSpec.describe RPlate::CLI do
       it_behaves_like 'sends to Generate class'
     end
 
-    context 'when an underscore name is given' do
-      let(:class_name) { 'my_class' }
+    context 'when an invalid name is given' do
+      let(:class_name) { %w[MyClass] }
 
-      it_behaves_like 'sends to Generate class'
+      it 'succeeds' do
+        expect(RPlate::Logger).to receive(:info).with(
+          name: { 0 => ['is in invalid format'] }
+        )
+        start
+      end
     end
 
     context 'when an invalid option is given' do
       let(:args) { ['generate', '-1'] }
 
       it 'logs out and exits' do
-        expect { start }.not_to raise_error
+        expect(RPlate::Logger).to receive(:info).with(
+          name: ['must be an array']
+        )
+        start
       end
     end
   end

@@ -13,8 +13,7 @@ module RPlate
         RUBOCOP_FILE_PATH = "#{RPlate.gem_root_path.freeze}/.rubocop.yml"
 
         def self.call(filename, entity, context)
-          build_view_opts = Marshal.load(Marshal.dump(context.opts))
-          entity_view = BuildView.call(entity, context.templates, build_view_opts)
+          entity_view = BuildView.call(entity, context)
 
           File.open(filename, 'w') { |f| f.write(entity_view) }
 

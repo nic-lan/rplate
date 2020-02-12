@@ -3,20 +3,36 @@
 module RPlate
   module Commands
     class Generate
-      Context = Struct.new(:templates, :opts) do
-        class << self
-          def create(entity, env:)
-            new(env.templates, build_opts(entity, env))
-          end
+      # The Environment defines the allowed environments for the Generate command
+      class Context
+        class Error < StandardError; end
 
-          private
+        TEMPLATES_DIR = 'templates'
 
-          def build_opts(entity, env)
-            {
-              env: env.env,
-              entity_constants: EntityConstants.fetch(entity)
-            }
-          end
+        TEMPLATES = {
+          default: {
+            layout: "#{TEMPLATES_DIR}/entity/layout.erb",
+            module: "#{TEMPLATES_DIR}/entity/module.erb",
+            resource: "#{TEMPLATES_DIR}/entity/resource.erb",
+            method: "#{TEMPLATES_DIR}/entity/method.erb"
+          },
+          spec: {
+            layout: "#{TEMPLATES_DIR}/entity_spec/layout.erb",
+            resource: "#{TEMPLATES_DIR}/entity_spec/resource.erb",
+            method: "#{TEMPLATES_DIR}/entity_spec/method.erb"
+          }
+        }.freeze
+
+        attr_reader :env
+
+        def initialize(name)
+          raise Error, 'Invalid Env' unless TEMPLATES[name]
+
+          @env = name
+        end
+
+        def templates
+          @_templates ||= TEMPLATES[env]
         end
       end
     end

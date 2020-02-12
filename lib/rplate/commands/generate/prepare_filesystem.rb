@@ -9,7 +9,7 @@ module RPlate
       # => applying existing rubocops
       class PrepareFilesystem
         def self.call(entity, context)
-          filename = BuildFilename.call(entity, context.opts)
+          filename = BuildFilename.call(entity, context.env)
 
           path = filename.split('/')
           path.pop
