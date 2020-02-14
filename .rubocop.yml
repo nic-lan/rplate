@@ -45,6 +45,9 @@ Layout/EndAlignment:
 Layout/DefEndAlignment:
   AutoCorrect: true
 
+Style/Documentation:
+  Enabled: false
+
 AllCops:
   Exclude:
     - 'spec/fixtures/**/*'
