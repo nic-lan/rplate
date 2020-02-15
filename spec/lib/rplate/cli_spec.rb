@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe RPlate::CLI do
   describe '.start' do
     shared_examples 'sends to Generate class' do

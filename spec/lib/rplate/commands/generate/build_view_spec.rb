@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe RPlate::Commands::Generate::BuildView do
   describe '.call' do
     let(:entity_names) { %w[my_class] }

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe RPlate::Commands::Generate do
   describe '.perform' do
     let(:entity_name) { %w[my_class] }

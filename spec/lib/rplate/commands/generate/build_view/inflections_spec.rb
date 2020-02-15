@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe RPlate::Commands::Generate::BuildView::Inflections do
   describe '#map' do
     let(:inflections) { %w[rplate:RPlate] }

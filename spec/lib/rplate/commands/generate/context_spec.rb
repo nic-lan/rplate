@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe RPlate::Commands::Generate::Context do
   describe '#templates' do
     let(:name) { :default }

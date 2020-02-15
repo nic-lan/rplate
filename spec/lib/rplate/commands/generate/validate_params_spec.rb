@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe RPlate::Commands::Generate::ValidateParams do
   describe '.call' do
     subject { described_class.call(entity_names, options) }
