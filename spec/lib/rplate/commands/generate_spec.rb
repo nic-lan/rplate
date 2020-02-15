@@ -7,13 +7,15 @@ RSpec.describe RPlate::Commands::Generate do
     let(:entity_name) { %w[my_class] }
     let(:root) { OUT_PATH }
     let(:required_methods) { [] }
+    let(:inflections) { [] }
     let(:type) { 'class' }
     let(:options) do
       {
         'root' => root,
         'name' => entity_name,
         'type' => type,
-        'required_methods' => required_methods
+        'required_methods' => required_methods,
+        'inflections' => inflections
       }
     end
 
@@ -58,6 +60,13 @@ RSpec.describe RPlate::Commands::Generate do
     context 'when some methods and namespaces' do
       let(:entity_name) { %w[my_class_with_methods] }
       let(:required_methods) { ['initialize', 'self.perform'] }
+
+      it_behaves_like 'create the required ruby files'
+    end
+
+    context 'when one inflection is provided' do
+      let(:entity_name) { %w[rplate] }
+      let(:inflections) { %w[rplate:RPlate] }
 
       it_behaves_like 'create the required ruby files'
     end

@@ -25,10 +25,12 @@ RSpec.describe RPlate::CLI do
         'root' => 'lib' }
     end
     let(:type_option) { 'class' }
-    let(:args) { ['generate', class_name] }
+    let(:addional_flags) { [] }
+    let(:args) { ['generate'] + class_name + addional_flags }
+
     let(:generate_command) { double(:command, call: true) }
     let(:expected_entity) do
-      options.merge(name: class_name).deep_symbolize_keys
+      options.merge(entity_names: class_name).deep_symbolize_keys
     end
 
     before do
@@ -37,23 +39,29 @@ RSpec.describe RPlate::CLI do
 
     it_behaves_like 'sends to Generate class'
 
+    context 'when more than one name' do
+      let(:class_name) { %w[my_module my_class] }
+
+      it_behaves_like 'sends to Generate class'
+    end
+
     context 'when option t is given' do
       let(:type_option) { 'module' }
-      let(:args) { ['generate', class_name, '-t', type_option] }
+      let(:addional_flags) { ['-t', type_option] }
 
       it_behaves_like 'sends to Generate class'
     end
 
     context 'when option m is given' do
       let(:required_methods_option) { ['self.perform'] }
-      let(:args) { ['generate', class_name, '-m', required_methods_option] }
+      let(:addional_flags) { ['-m', required_methods_option] }
 
       it_behaves_like 'sends to Generate class'
     end
 
     context 'when option i is given' do
       let(:inflections) { ['rplate:RPLATE', 'api:API'] }
-      let(:args) { ['generate', class_name, '-i', inflections] }
+      let(:addional_flags) { ['-i', inflections] }
 
       it_behaves_like 'sends to Generate class'
     end
@@ -63,18 +71,18 @@ RSpec.describe RPlate::CLI do
 
       it 'succeeds' do
         expect(RPlate::Logger).to receive(:info).with(
-          name: { 0 => ['is in invalid format'] }
+          entity_names: { 0 => ['is in invalid format'] }
         )
         start
       end
     end
 
-    context 'when an invalid option is given' do
+    context 'when an invalid signature is given' do
       let(:args) { ['generate', '-1'] }
 
       it 'logs out and exits' do
         expect(RPlate::Logger).to receive(:info).with(
-          name: ['must be an array']
+          entity_names: { 0 => ['is in invalid format'] }
         )
         start
       end

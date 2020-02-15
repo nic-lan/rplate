@@ -13,9 +13,9 @@ module RPlate
         Context.new(:spec)
       ].freeze
 
-      def self.call(entity_name, options)
+      def self.call(entity_names, options)
         validation_result = Commands::Generate::ValidateParams.call(
-          entity_name, options
+          entity_names, options
         )
 
         return new(validation_result.to_h).call if validation_result.success?

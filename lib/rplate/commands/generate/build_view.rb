@@ -21,6 +21,7 @@ module RPlate
         def initialize(entity, context)
           @entity = entity
           @context = context
+          @inflections = Inflections.new(entity.inflections)
         end
 
         def call
@@ -31,7 +32,7 @@ module RPlate
 
         private
 
-        attr_reader :entity, :context
+        attr_reader :entity, :context, :inflections
 
         def templates
           @_templates ||= context.templates
@@ -42,7 +43,7 @@ module RPlate
         end
 
         def entity_constants
-          @_entity_constants ||= entity.name.map(&:camelize)
+          @_entity_constants ||= entity.entity_names.map { |name| @inflections.map(name) }
         end
 
         def template(template)

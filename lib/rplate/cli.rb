@@ -4,7 +4,7 @@ module RPlate
   #
   # CLI is the container for the gem commands
   class CLI < Thor
-    desc 'generate CLASS_NAME', 'generate a ruby class with the given name'
+    desc 'generate [ENTITIES]', 'generate a ruby class with the given name'
     option :type, aliases: '-t', default: 'class', type: :string, desc: '`class` or `module`'
 
     option :required_methods,
@@ -21,8 +21,8 @@ module RPlate
            default: [],
            desc: 'example: -i rplate:RPlate api:API'
 
-    def generate(entity_name)
-      Commands::Generate.call(entity_name, options)
+    def generate(*entities)
+      Commands::Generate.call(entities, options)
     end
 
     desc 'version', 'return the current version of rplate'

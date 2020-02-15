@@ -4,12 +4,12 @@ require 'spec_helper'
 
 RSpec.describe RPlate::Commands::Generate::BuildView do
   describe '.call' do
-    let(:entity_name) { %w[my_class] }
+    let(:entity_names) { %w[my_class] }
     let(:inflections) { [] }
     let(:entity) do
       double(:entity,
              root: 'out',
-             name: entity_name,
+             entity_names: entity_names,
              type: 'class',
              required_methods: [],
              inflections: inflections)
@@ -36,14 +36,14 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
     end
 
     context 'when the entity constants are more than one element' do
-      let(:entity_name) { %w[my_module my_class] }
+      let(:entity_names) { %w[my_module my_class] }
 
       it { is_expected.to match("class MyClass\n") }
       it { is_expected.to match("module MyModule\n") }
     end
 
     context 'when the entity constants namespace is already existing' do
-      let(:entity_name) { %w[my_namespace my_class] }
+      let(:entity_names) { %w[my_namespace my_class] }
 
       before do
         FileUtils.mkdir_p('out') unless File.directory?('out')
@@ -62,7 +62,7 @@ RSpec.describe RPlate::Commands::Generate::BuildView do
     end
 
     context 'when the entity constants are more than one element and in spec environment' do
-      let(:entity_name) { %w[my_module my_class] }
+      let(:entity_names) { %w[my_module my_class] }
       let(:env) { :spec }
 
       it { is_expected.to match("RSpec.describe MyModule::MyClass do\n") }
