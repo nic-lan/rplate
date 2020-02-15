@@ -24,7 +24,7 @@ will:
 Once those files have been generated `rplate` will run rubocop on them according to the styleguide in `.rubocop.yml`.
 
 ###### Note
-Currently it is not supported the use of a custom rubocop styleguide.
+Currently it is not supported the use of a custom rubocop styleguide but this does not mean that you cannot run your local styleguide by your own ;-)
 
 #### Allowed arguments
 
@@ -67,7 +67,7 @@ rplate generate my_class -m self.perform perform
 
 will declare the 2 methods in the result entity and spec.
 
-#### Root
+#### Root Dir
 
 Sometime you want to place a new entity in a root dir which is not expected to be the root for an another entity.
 This can be the case for example of `app/controllers` for a rails application.
