@@ -2,22 +2,18 @@
 
 Rplate is an opinionated template generator for ruby entities.
 
-In particular in order to take full advantage of rplate features your naming conventions must follow the [zeitwerk filestructure](https://github.com/fxn/zeitwerk#file-structure).
+###### Note
+
+To take full advantage of rplate features your naming conventions must follow the [zeitwerk filestructure](https://github.com/fxn/zeitwerk#file-structure).
 
 Good news to be mentioned is that from rails 6 [zeitwerk gem](https://github.com/fxn/zeitwerk) is the default require engine and you are probably good to go :-)
 
-## Installation
-
-Install it yourself as:
-
-```console
-  $ gem install rplate
-```
-
 ## Usage
 
+The cli interface of `rplate` expects a list of underscored entities
+
 ```console
-rplate generate MyClass
+rplate generate my_class
 ```
 
 will place:
@@ -41,7 +37,7 @@ That will result in:
 
 ```console
 Usage:
-  rplate generate CLASS_NAME
+  rplate generate [ENTITIES]
 
 Options:
   -t, [--type=TYPE]                       # `class` or `module`
@@ -49,9 +45,43 @@ Options:
   -m, [--required-methods=one two three]  # the class methods
   -r, [--root=ROOT]                       # example: `app/controllers`
                                           # Default: lib
+  -i, [--inflections=one two three]       # example: -i rplate:RPlate api:API
 
 generate a ruby entity with the given name
 ```
+
+#### Type
+
+You can define what kind of type your new entity should be: class or module
+
+#### Required Methods
+
+`rplate` allows you to pass the list of desired methods you would like the new entity be provided.
+
+For example:
+
+```console
+rplate generate my_class -m self.perform perform
+```
+
+will declare the 2 methods in the result entity and spec.
+
+#### Root
+
+Sometime you want to place a new entity in a root dir which is not expected to be the root for an another entity.
+This can be the case for example of `app/controllers` for a rails application.
+`rplate` allows you to pass this root dir via `-r` option.
+
+#### Inflections
+
+Sometime you want to place an entity `api http_client` and you want the result entities to inflect `api` with `API` and `http` with `HTTP`.
+`rplate` allows you to do that with the inflections:
+
+```console
+rplate generate api http_client -i api:API http_client:HTTPClient
+```
+
+Enjoy !!!
 
 ## Development
 
