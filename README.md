@@ -13,12 +13,13 @@ Good news to be mentioned is that from rails 6 [zeitwerk gem](https://github.com
 The cli interface of `rplate` expects a list of underscored entities
 
 ```console
-rplate generate my_class
+rplate generate my_module my_class
 ```
 
-will place:
-- a Myclass class in `lib/my_class.rb`
-- the related spec file in `spec/lib/my_class_spec.rb`
+will:
+- place the `Myclass` class in `lib/my_module/my_class.rb`
+- place the related spec file in `spec/lib/my_class_spec.rb`
+- scope `MyClass` inside the `MyNamespace` module
 
 Once those files have been generated `rplate` will run rubocop on them according to the styleguide in `.rubocop.yml`.
 
