@@ -30,6 +30,11 @@ RSpec.configure do |config|
     FileUtils.rm_rf(OUT_PATH)
     FileUtils.rm_rf("spec/#{OUT_PATH}")
   end
+
+  config.before do
+    allow(RPlate::Commands::Generate::StoreEntity::AskOverwrite).to receive(:confirm?)
+      .and_return(true)
+  end
 end
 
 def fixture(filename, prefix_path: true)

@@ -138,29 +138,18 @@ RSpec.describe RPlate::Commands::Generate::ValidateParams do
       it { is_expected.to be_success }
     end
 
-    context 'when inflections is one valid element' do
-      let(:inflections) { ['rplate-RPlate'] }
+    [%w[rplate-RPlate], %w[RPlate:rplate]].each do |invalid_inflections_format|
+      context 'when inflections is one invalid element' do
+        let(:inflections) { invalid_inflections_format }
 
-      it 'is not success' do
-        expect(subject).not_to be_success
-        expect(subject.errors.to_h).to include(
-          inflections: {
-            0 => ['is in invalid format']
-          }
-        )
-      end
-    end
-
-    context 'when inflections is one invalid element' do
-      let(:inflections) { ['RPlate:rplate'] }
-
-      it 'is not success' do
-        expect(subject).not_to be_success
-        expect(subject.errors.to_h).to include(
-          inflections: {
-            0 => ['is in invalid format']
-          }
-        )
+        it 'is not success' do
+          expect(subject).not_to be_success
+          expect(subject.errors.to_h).to include(
+            inflections: {
+              0 => ['is in invalid format']
+            }
+          )
+        end
       end
     end
 
