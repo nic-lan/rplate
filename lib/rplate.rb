@@ -4,7 +4,7 @@
   thor
   active_support/core_ext/hash
   active_support/core_ext/string/inflections
-  hanami-validations
+  dry-validation
   zeitwerk
   ostruct
   tilt/erb

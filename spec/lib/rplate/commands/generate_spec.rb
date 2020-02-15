@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe RPlate::Commands::Generate do
   describe '.perform' do
-    let(:entity_name) { 'MyClass' }
+    let(:entity_name) { %w[my_class] }
     let(:root) { OUT_PATH }
     let(:required_methods) { [] }
+    let(:inflections) { [] }
     let(:type) { 'class' }
     let(:options) do
       {
         'root' => root,
         'name' => entity_name,
         'type' => type,
-        'required_methods' => required_methods
+        'required_methods' => required_methods,
+        'inflections' => inflections
       }
     end
 
     subject { described_class.call(entity_name, options) }
 
     shared_examples 'create the required ruby files' do
-      let(:base_filename) { entity_name.underscore }
+      let(:base_filename) { entity_name.join('/') }
       let(:fixture_filename) { "#{base_filename}.rb" }
       let(:expected_entity) { fixture(fixture_filename) }
 
@@ -50,28 +50,21 @@ RSpec.describe RPlate::Commands::Generate do
     it_behaves_like 'create the required ruby files'
 
     context 'when the given entity has a namespaced class name by ::' do
-      let(:entity_name) { 'MyModule::MyClass' }
+      let(:entity_name) { %w[my_module my_class] }
 
       it_behaves_like 'create the required ruby files'
-    end
-
-    context 'when the given entity name is underscored and splittable by /' do
-      let(:entity_name) { 'my_module/my_class' }
-
-      it_behaves_like 'create the required ruby files'
-    end
-
-    context 'when the given entity name is underscored and splittable by :' do
-      let(:entity_name) { 'my_module:my_class' }
-
-      it_behaves_like 'create the required ruby files' do
-        let(:base_filename) { 'my_module/my_class' }
-      end
     end
 
     context 'when some methods and namespaces' do
-      let(:entity_name) { 'MyClassWithMethods' }
+      let(:entity_name) { %w[my_class_with_methods] }
       let(:required_methods) { ['initialize', 'self.perform'] }
+
+      it_behaves_like 'create the required ruby files'
+    end
+
+    context 'when one inflection is provided' do
+      let(:entity_name) { %w[rplate] }
+      let(:inflections) { %w[rplate:RPlate] }
 
       it_behaves_like 'create the required ruby files'
     end
@@ -80,7 +73,10 @@ RSpec.describe RPlate::Commands::Generate do
       let(:type) { 'invalid' }
 
       it 'raises' do
-        expect { subject }.to raise_error(described_class::Error)
+        expect(RPlate::Logger).to receive(:info).with(type: ['must be one of: class, module'])
+        expect(described_class).not_to receive(:new)
+
+        subject
       end
     end
   end

@@ -14,30 +14,36 @@ module RPlate
         Method = Struct.new(:name)
         Resource = Struct.new(:name, :type)
 
-        def self.call(entity, templates = {}, opts = {})
-          new(entity, templates, opts).call
+        def self.call(entity, context)
+          new(entity, context).call
         end
 
-        def initialize(entity, templates, opts)
+        def initialize(entity, context)
           @entity = entity
-          @opts = opts
-          @templates = templates
+          @context = context
+          @inflections = Inflections.new(entity.inflections)
         end
 
         def call
           template(templates[:layout]).render do
-            entity_constants_copy = Marshal.load(Marshal.dump(entity_constants))
-
-            render(entity_constants_copy)
+            render(entity_constants)
           end
         end
 
         private
 
-        attr_reader :entity, :templates, :opts
+        attr_reader :entity, :context, :inflections
+
+        def templates
+          @_templates ||= context.templates
+        end
+
+        def env
+          @_env ||= context.env
+        end
 
         def entity_constants
-          @_entity_constants ||= opts[:entity_constants] || []
+          @_entity_constants ||= entity.entity_names.map { |name| @inflections.map(name) }
         end
 
         def template(template)
@@ -47,16 +53,16 @@ module RPlate
 
         # `render` method is:
         #   =>  recursive when the current resource is a namespace.
-        #   =>  when the current resource happens to last element in current_entity_constants,
-        #         then the entity template is rendered by calling `render_entity`
-        def render(current_entity_constants)
-          return render_entity(current_entity_constants.join('::')) if opts[:env] == :spec
+        #   =>  when the current resource happens to last element in remaining_constants,
+        #         then the entity template is rendered by calling `render_resource`
+        def render(remaining_constants)
+          return render_resource(remaining_constants.join('::')) if env == :spec
 
-          current_constant = current_entity_constants.shift
-          return render_entity(current_constant) if current_entity_constants.empty?
+          current_constant = remaining_constants.shift
+          return render_resource(current_constant) if remaining_constants.empty?
 
           render_namespace(current_constant) do
-            render(current_entity_constants)
+            render(remaining_constants)
           end
         end
 
@@ -68,8 +74,8 @@ module RPlate
           end
         end
 
-        def render_entity(entity_name)
-          resource = Resource.new(entity_name, entity.type)
+        def render_resource(resource_name)
+          resource = Resource.new(resource_name, entity.type)
 
           template(templates[:resource]).render(resource) do
             render_methods

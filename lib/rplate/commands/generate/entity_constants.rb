@@ -12,7 +12,9 @@ module RPlate
 
         class << self
           def fetch(entity)
-            entity.name.split(SPLIT_REGEX).map(&:camelize)
+            entity.name
+                  .split(SPLIT_REGEX)
+                  .map(&:camelize)
           end
         end
       end

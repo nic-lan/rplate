@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = %w[lib templates]
 
   spec.add_dependency 'activesupport', '~> 6.0.2'
-  spec.add_dependency 'hanami-validations', '~> 1.3'
+  spec.add_dependency 'dry-validation', '~> 1.4'
   spec.add_dependency 'rubocop', '~> 0.79'
   spec.add_dependency 'rubocop-performance'
   spec.add_dependency 'rubocop-rspec'

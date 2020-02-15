@@ -36,11 +36,17 @@ Metrics/BlockLength:
 RSpec/FilePath:
   Enabled: false
 
+RSpec/ExampleLength:
+  Enabled: false
+
 Layout/EndAlignment:
   AutoCorrect: true
 
 Layout/DefEndAlignment:
   AutoCorrect: true
+
+Style/Documentation:
+  Enabled: false
 
 AllCops:
   Exclude:
