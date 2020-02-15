@@ -13,12 +13,26 @@ module RPlate
         RUBOCOP_FILE_PATH = "#{RPlate.gem_root_path.freeze}/.rubocop.yml"
 
         def self.call(filename, entity, context)
+          new(filename, entity, context).call if AskOverwrite.confirm?(filename)
+        end
+
+        def initialize(filename, entity, context)
+          @filename = filename
+          @entity = entity
+          @context = context
+        end
+
+        def call
           entity_view = BuildView.call(entity, context)
 
           File.open(filename, 'w') { |f| f.write(entity_view) }
 
           RuboCop::CLI.new.run([filename, '-a', '-c', RUBOCOP_FILE_PATH])
         end
+
+        private
+
+        attr_reader :filename, :entity, :context
       end
     end
   end

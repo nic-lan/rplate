@@ -5,6 +5,7 @@
   active_support/core_ext/hash
   active_support/core_ext/string/inflections
   dry-validation
+  highline
   zeitwerk
   ostruct
   tilt/erb

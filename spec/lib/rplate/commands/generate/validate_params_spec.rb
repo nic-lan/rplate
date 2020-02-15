@@ -138,7 +138,7 @@ RSpec.describe RPlate::Commands::Generate::ValidateParams do
       it { is_expected.to be_success }
     end
 
-    context 'when inflections is one valid element' do
+    context 'when inflections is one invalid element' do
       let(:inflections) { ['rplate-RPlate'] }
 
       it 'is not success' do
