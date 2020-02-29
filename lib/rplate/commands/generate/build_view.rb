@@ -11,7 +11,6 @@ module RPlate
         # This allow the path to be evaluated from inside the gem and not from where the gem is run
         GEM_ROOT_PATH = RPlate.gem_root_path.freeze
 
-        Method = Struct.new(:name)
         Resource = Struct.new(:name, :type)
 
         def self.call(entity, context)
@@ -90,7 +89,7 @@ module RPlate
         end
 
         def render_method(method_name)
-          method = Method.new(method_name)
+          method = Method.build(method_name, context.env)
 
           template(templates[:method]).render(method)
         end
