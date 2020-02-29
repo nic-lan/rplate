@@ -3,9 +3,11 @@
 require 'spec_helper'
 
 RSpec.describe MyClassWithMethods do
-  describe 'initialize' do
+  describe '#initialize' do
+    subject(:initialize) { described_class.new.initialize }
   end
 
-  describe 'self.perform' do
+  describe '.perform' do
+    subject(:perform) { described_class.perform }
   end
 end
