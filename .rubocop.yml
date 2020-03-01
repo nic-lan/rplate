@@ -48,6 +48,15 @@ Layout/DefEndAlignment:
 Style/Documentation:
   Enabled: false
 
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
 AllCops:
   Exclude:
     - 'spec/fixtures/**/*'

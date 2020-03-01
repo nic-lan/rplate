@@ -6,8 +6,11 @@ module RPlate
       class BuildView
         Method = Struct.new(:method_name, :method_subject_name, :method_in_subject_block) do
           CLASS_METHOD_REGEX = /\Aself\.\w+\z/.freeze
+          INITIALIZE_METHOD_REGEX = /\Ainitialize\z/.freeze
+
           class << self
             def build(name, env)
+              return if env == :spec && INITIALIZE_METHOD_REGEX.match?(name)
               return new(name, name, name) if env == :default
 
               new(*init_args(name))

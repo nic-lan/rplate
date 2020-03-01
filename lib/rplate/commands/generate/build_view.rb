@@ -91,7 +91,7 @@ module RPlate
         def render_method(method_name)
           method = Method.build(method_name, context.env)
 
-          template(templates[:method]).render(method)
+          template(templates[:method]).render(method) if method
         end
       end
     end
