@@ -85,6 +85,7 @@ module RPlate
           entity
             .required_methods
             .map { |method_name| render_method(method_name) }
+            .compact
             .join("\n")
         end
 
