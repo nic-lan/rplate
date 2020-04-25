@@ -69,9 +69,9 @@ Lint/StructNewOverride:
 Style/ExponentialNotation:
   Enabled: true
 
-
 AllCops:
   Exclude:
     - 'spec/fixtures/**/*'
     - 'spec/out/**/*'
     - '*.gemspec'
+    - 'vendor/bundle/**/*'
