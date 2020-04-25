@@ -11,7 +11,7 @@ module RPlate
            aliases: '-m',
            default: [],
            type: :array,
-           desc: 'example: `-m self.perform initialize`'
+           desc: "example: `-m self.perform 'self.valid?' initialize`"
 
     option :root, aliases: '-r', default: 'lib', type: :string, desc: 'example `-r app/controllers`'
 
