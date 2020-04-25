@@ -2,6 +2,8 @@
 
 Rplate is an opinionated template generator for ruby entities.
 
+It is tested to work on ruby 2.4+ in ubuntu and macosx platforms.
+
 ###### Note
 
 To take full advantage of rplate features your naming conventions must follow the [zeitwerk filestructure](https://github.com/fxn/zeitwerk#file-structure).
@@ -18,7 +20,7 @@ rplate generate my_module my_class
 
 will:
 - place the `Myclass` class in `lib/my_module/my_class.rb`
-- place the related spec file in `spec/lib/my_class_spec.rb`
+- place the related spec file in `spec/lib/my_module/my_class_spec.rb`
 - scope `MyClass` inside the `MyNamespace` module
 
 Once those files have been generated `rplate` will run rubocop on them according to the styleguide in `.rubocop.yml`.
