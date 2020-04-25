@@ -66,6 +66,12 @@ rplate generate my_class -m self.perform perform
 ```
 
 will declare the 2 methods in the result entity and spec.
+To be noted that when `?` method wants to be added, it needs to be passed within `''`.
+For example.
+
+```console
+rplate generate my_class -m 'valid?'
+```
 
 #### Root Dir
 
