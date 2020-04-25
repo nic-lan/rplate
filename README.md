@@ -1,6 +1,8 @@
 # RPlate
 
-RPlate is an opinionated template generator for ruby entities.
+RPlate is an opinionated tool to generate ruby classes and modules and related specs from predefined templates.
+
+Its goal is to remove the need to manually create everytime those files and fill them with a given content, like class definition, namespace scoping, method definition and so on.
 
 It is tested to work on ruby 2.4+ in ubuntu and macosx platforms.
 
@@ -23,7 +25,7 @@ will:
 - place the related spec file in `spec/lib/my_module/my_class_spec.rb`
 - scope `MyClass` inside the `MyNamespace` module
 
-Once those files have been generated `rplate` will run rubocop on them according to the styleguide in `.rubocop.yml`.
+Once those files have been generated `rplate` will run rubocop on them according to the styleguide in rplate `.rubocop.yml`.
 
 ###### Note
 Currently it is not supported the use of a custom rubocop styleguide but this does not mean that you cannot run your local styleguide by your own ;-)
