@@ -7,7 +7,7 @@ gemspec
 
 group :test, :development do
   gem 'byebug'
-  gem 'rake', '~> 12.0'
+  gem 'rake', '~> 13.0'
   gem 'rspec', '~> 3.0'
   gem 'rspec_junit_formatter', '~> 0.4.1'
 end
