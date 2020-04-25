@@ -1,6 +1,6 @@
 # RPlate
 
-Rplate is an opinionated template generator for ruby entities.
+RPlate is an opinionated template generator for ruby entities.
 
 It is tested to work on ruby 2.4+ in ubuntu and macosx platforms.
 
