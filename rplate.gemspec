@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'A ruby template generator'
   spec.description   = 'This gem is just a template generator for ruby classes.'
-  spec.license       = 'MIT'
+  spec.license       = 'GPL-3.0-or-later'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
   # Specify which files should be added to the gem when it is released.
