@@ -6,7 +6,7 @@ module RPlate
       # The EntityContants class is responsible for:
       # => returning the opts for the default context given an entity
       class EntityConstants
-        SPLIT_REGEX = %r{:{1,2}|\/}.freeze
+        SPLIT_REGEX = %r{:{1,2}|/}.freeze
         CONSTANT_REGEX = /(?<constant>[A-Za-z]\w*)/.freeze
         ALLOWED_NAME_REGEX = /\A#{CONSTANT_REGEX}(#{SPLIT_REGEX}#{CONSTANT_REGEX})*\z/.freeze
 

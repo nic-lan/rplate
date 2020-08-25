@@ -6,7 +6,7 @@ module RPlate
     class << self
       attr_reader :logger
 
-      def configure(logger: ::Logger.new(STDOUT))
+      def configure(logger: ::Logger.new($stdout))
         @logger = logger
       end
 
