@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'highline', '~> 2.0.3'
   spec.add_dependency 'rubocop-performance'
   spec.add_dependency 'rubocop-rspec'
+  spec.add_dependency 'rubocop-rake'
   spec.add_dependency 'thor', '~> 1.0'
   spec.add_dependency 'tilt', '~> 2.0'
   spec.add_dependency 'zeitwerk', '>= 2.2.2', '< 2.5.0'

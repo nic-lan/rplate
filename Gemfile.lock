@@ -7,6 +7,7 @@ PATH
       highline (~> 2.0.3)
       rubocop (>= 0.79, < 2.0)
       rubocop-performance
+      rubocop-rake
       rubocop-rspec
       thor (~> 1.0)
       tilt (~> 2.0)
@@ -99,6 +100,8 @@ GEM
     rubocop-performance (1.9.2)
       rubocop (>= 0.90.0, < 2.0)
       rubocop-ast (>= 0.4.0)
+    rubocop-rake (0.5.1)
+      rubocop
     rubocop-rspec (2.2.0)
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)

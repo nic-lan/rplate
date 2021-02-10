@@ -6,6 +6,7 @@ module RPlate
     # Generate is the command class responsible to generate the ruby file
     class Generate
       class Entity < OpenStruct; end
+
       class Error < StandardError; end
 
       CONTEXTS = [

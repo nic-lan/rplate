@@ -162,7 +162,19 @@ Style/StringConcatenation:
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
+Lint/EmptyClass:
+  Exclude:
+  - out/**/*
+  - out/*
+
 AllCops:
+  NewCops: enable
   Exclude:
     - 'spec/fixtures/**/*'
     - 'spec/out/**/*'
