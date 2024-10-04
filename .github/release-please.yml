@@ -1,0 +1,3 @@
+handleGHRelease: true
+releaseType: ruby
+packageName: sql_control_client
