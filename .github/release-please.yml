@@ -1,3 +1,4 @@
 handleGHRelease: true
 releaseType: ruby
 packageName: sql_control_client
+initialVersion: '0.8.0'
