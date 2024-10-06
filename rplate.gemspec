@@ -30,14 +30,14 @@ Gem::Specification.new do |spec|
   spec.executables   = ['rplate']
   spec.require_paths = %w[lib templates]
 
-  spec.add_dependency 'activesupport', '>= 6.0.2', '< 6.2.0'
-  spec.add_dependency 'dry-validation', '~> 1.4'
+  spec.add_dependency 'activesupport', '~> 6'
+  spec.add_dependency 'dry-validation', '~> 1'
   spec.add_dependency 'rubocop', '~> 1'
-  spec.add_dependency 'highline', '~> 2.0.3'
+  spec.add_dependency 'highline', '~> 2'
   spec.add_dependency 'rubocop-performance'
   spec.add_dependency 'rubocop-rspec'
-  spec.add_dependency 'thor', '~> 1.0'
+  spec.add_dependency 'thor', '~> 1'
   spec.add_dependency 'tilt', '~> 2'
-  spec.add_dependency 'zeitwerk', '>= 2.2.2', '< 2.5.0'
+  spec.add_dependency 'zeitwerk', '~> 2'
   spec.add_dependency 'racc', '~> 1'
 end
