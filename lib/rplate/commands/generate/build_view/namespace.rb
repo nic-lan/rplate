@@ -5,10 +5,10 @@ module RPlate
     class Generate
       class BuildView
         # The Namespace class is responsible for handling the Namespace infos
+        MODULE = 'module'
+        CLASS = 'class'
+        TYPE_REGEX = '(?<type>class|module)'
         Namespace = Struct.new(:name, :entity_constants, :root_dir) do
-          MODULE = 'module'
-          CLASS = 'class'
-          TYPE_REGEX = '(?<type>class|module)'
 
           # `type` tries to guess the type for the given namespace based on:
           # => its name

@@ -8,6 +8,7 @@
   highline
   zeitwerk
   ostruct
+  tilt
   tilt/erb
   fileutils
   rubocop
