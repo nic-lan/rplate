@@ -39,4 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'thor', '~> 1.0'
   spec.add_dependency 'tilt', '~> 2.0'
   spec.add_dependency 'zeitwerk', '>= 2.2.2', '< 2.5.0'
+  spec.add_dependency 'racc', '~> 1'
 end
