@@ -33,8 +33,14 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
-RSpec/FilePath:
+RSpec/StubbedMock:
   Enabled: false
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+RSpec/SpecFilePathSuffix:
+  Enabled: true
 
 RSpec/ExampleLength:
   Enabled: false
