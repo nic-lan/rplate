@@ -3,7 +3,7 @@ name: CI
 on: pull_request
 
 jobs:
-  tests:
+  rspec:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,5 +15,12 @@ jobs:
         bundle exec rspec spec/lib \
           --format progress \
           --format RspecJunitFormatter
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
     - name: Run Rubocop
       run: bundle exec rubocop
