@@ -9,7 +9,6 @@ module RPlate
         CLASS = 'class'
         TYPE_REGEX = '(?<type>class|module)'
         Namespace = Struct.new(:name, :entity_constants, :root_dir) do
-
           # `type` tries to guess the type for the given namespace based on:
           # => its name
           # => the existence or not of the relative file
