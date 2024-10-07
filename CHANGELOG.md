@@ -1,1 +1,14 @@
 # Changelog
+
+## [0.8.1](https://github.com/nic-lan/rplate/compare/0.8.0...v0.8.1) (2024-10-07)
+
+
+### Bug Fixes
+
+* **deps:** loose deps ([#218](https://github.com/nic-lan/rplate/issues/218)) ([9251a84](https://github.com/nic-lan/rplate/commit/9251a840d9a6be72997ed2f498b2e0a7b54c3b77))
+* **deps:** update actions/checkout action to v4 ([#215](https://github.com/nic-lan/rplate/issues/215)) ([ba8c0c4](https://github.com/nic-lan/rplate/commit/ba8c0c4083713916edf2f7382b8707a56adac251))
+* **deps:** update actions/checkout action to v4 ([#220](https://github.com/nic-lan/rplate/issues/220)) ([5901227](https://github.com/nic-lan/rplate/commit/59012274ebf81c0742cc514bc9af77216f97aa36))
+* **deps:** update dependency rake to v13.2.1 ([#207](https://github.com/nic-lan/rplate/issues/207)) ([5698fbf](https://github.com/nic-lan/rplate/commit/5698fbfbe55e03dfacf69c324c678f69eee564a9))
+* **deps:** update dependency rspec_junit_formatter to '~&gt; 0.6.0' ([#213](https://github.com/nic-lan/rplate/issues/213)) ([7109bdf](https://github.com/nic-lan/rplate/commit/7109bdfc515fa8bcf751bacc0ec4af0b504933b4))
+
+## Changelog
