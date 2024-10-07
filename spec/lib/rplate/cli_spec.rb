@@ -69,7 +69,7 @@ RSpec.describe RPlate::CLI do
 
       it 'succeeds' do
         expect(RPlate::Logger).to receive(:info).with(
-          entity_names: { 0 => ['is in invalid format'] }
+          { entity_names: { 0 => ['is in invalid format'] } }
         )
         start
       end
@@ -80,7 +80,7 @@ RSpec.describe RPlate::CLI do
 
       it 'logs out and exits' do
         expect(RPlate::Logger).to receive(:info).with(
-          entity_names: { 0 => ['is in invalid format'] }
+          { entity_names: { 0 => ['is in invalid format'] } }
         )
         start
       end
