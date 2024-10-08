@@ -1,4 +1,0 @@
-handleGHRelease: true
-releaseType: ruby
-packageName: rplate
-initialVersion: '0.8.0'
