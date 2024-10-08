@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rplate (0.8.2)
+    rplate (0.8.3)
       activesupport (~> 7)
       dry-validation (~> 1)
       highline (~> 2)
