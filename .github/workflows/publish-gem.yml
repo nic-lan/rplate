@@ -5,13 +5,14 @@ on:
     types:
       - published
 
+permissions:
+  pull-requests: read
+  contents: write
+  packages: write
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
 
     steps:
     - uses: actions/checkout@v4
