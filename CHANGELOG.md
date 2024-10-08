@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2](https://github.com/nic-lan/rplate/compare/v0.8.1...v0.8.2) (2024-10-08)
+
+
+### Bug Fixes
+
+* **deps:** bump activesupport 7.2.1 ([#226](https://github.com/nic-lan/rplate/issues/226)) ([30e5306](https://github.com/nic-lan/rplate/commit/30e5306bb6d835bba7194b1ce99fdac01e202c9c))
+
 ## [0.8.1](https://github.com/nic-lan/rplate/compare/0.8.0...v0.8.1) (2024-10-07)
 
 
