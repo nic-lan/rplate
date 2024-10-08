@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.3](https://github.com/nic-lan/rplate/compare/v0.8.2...v0.8.3) (2024-10-08)
+
+
+### Bug Fixes
+
+* **test:** try out new release ([#234](https://github.com/nic-lan/rplate/issues/234)) ([0d9ef1d](https://github.com/nic-lan/rplate/commit/0d9ef1d6c9b478fc7d58b71867d4349322035d34))
+
 ## [0.8.2](https://github.com/nic-lan/rplate/compare/v0.8.1...v0.8.2) (2024-10-08)
 
 
