@@ -13,7 +13,8 @@ RSpec.describe RPlate::Commands::Generate do
         'name' => entity_name,
         'type' => type,
         'required_methods' => required_methods,
-        'inflections' => inflections
+        'inflections' => inflections,
+        'spec_root' => 'spec/out'
       }
     end
 

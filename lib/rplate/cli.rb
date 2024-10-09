@@ -15,6 +15,9 @@ module RPlate
 
     option :root, aliases: '-r', default: 'lib', type: :string, desc: 'example `-r app/controllers`'
 
+    option :spec_root, aliases: '-s', default: 'spec/lib', type: :string,
+                       desc: 'example `-s spec/controllers`'
+
     option :inflections,
            aliases: '-i',
            type: :array,

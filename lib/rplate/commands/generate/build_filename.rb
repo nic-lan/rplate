@@ -18,9 +18,10 @@ module RPlate
           # @return [String] The built filename
           def call(entity, env)
             filename = build_filename(entity.entity_names, env)
-            prefix_path = 'spec' if env == :spec
 
-            [prefix_path, entity.root, filename].compact.join('/')
+            prefix_path = env == :default ? entity.root : entity.spec_root
+
+            File.join(prefix_path, filename)
           end
 
           private

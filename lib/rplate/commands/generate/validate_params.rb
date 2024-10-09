@@ -18,6 +18,7 @@ module RPlate
           required(:required_methods).array(:str?, format?: ALLOWED_METHODS_REGEX)
           required(:inflections).array(:str?, format?: ALLOWED_INFLECTIONS_REGEX)
           optional(:root)
+          optional(:spec_root)
         end
 
         rule(:inflections) do
