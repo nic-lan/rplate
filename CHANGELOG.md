@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/nic-lan/rplate/compare/v0.9.0...v0.9.1) (2024-10-09)
+
+
+### Bug Fixes
+
+* **deps:** add ostruct and abbrev, remove warnings ([#238](https://github.com/nic-lan/rplate/issues/238)) ([6375cad](https://github.com/nic-lan/rplate/commit/6375cad532774b554e96d1cba1a71b6b90b34ac7))
+
 ## [0.9.0](https://github.com/nic-lan/rplate/compare/v0.8.3...v0.9.0) (2024-10-09)
 
 
