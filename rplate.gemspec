@@ -40,4 +40,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'tilt', '~> 2'
   spec.add_dependency 'zeitwerk', '~> 2'
   spec.add_dependency 'racc', '~> 1'
+  spec.add_dependency 'abbrev', '~> 0'
+  spec.add_dependency 'ostruct', '~> 0'
 end
