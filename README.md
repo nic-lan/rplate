@@ -47,12 +47,14 @@ Usage:
 Options:
   -t, [--type=TYPE]                       # `class` or `module`
                                           # Default: class
-  -m, [--required-methods=one two three]  # the class methods
-  -r, [--root=ROOT]                       # example: `app/controllers`
+  -m, [--required-methods=one two three]  # example: `-m self.perform 'self.valid?' initialize`
+  -r, [--root=ROOT]                       # example `-r app/controllers`
                                           # Default: lib
+  -s, [--spec-root=SPEC_ROOT]             # example `-s spec/controllers`
+                                          # Default: spec/lib
   -i, [--inflections=one two three]       # example: -i rplate:RPlate api:API
 
-generate a ruby entity with the given name
+generate a ruby class with the given name
 ```
 
 #### Type
@@ -81,6 +83,12 @@ rplate generate my_class -m 'valid?'
 
 Sometime you want to place a new entity in a root dir which is not expected to be the root for an another entity.
 This can be the case for example of `app/controllers` for a rails application.
+`rplate` allows you to pass this root dir via `-r` option.
+
+#### Spec Root Dir
+
+Sometime you want to place a new entity in a spec root dir which is not expected to be the root for an another entity.
+This can be the case for example of `spec/controllers` for a rails application.
 `rplate` allows you to pass this root dir via `-r` option.
 
 #### Inflections
