@@ -5,7 +5,8 @@ require 'spec_helper'
 RSpec.describe RPlate::Commands::Generate::BuildFilename do
   describe '.call' do
     let(:root) { 'lib' }
-    let(:entity) { double(:entity, entity_names: entity_names, root: root) }
+    let(:spec_root) { 'spec/lib' }
+    let(:entity) { double(:entity, entity_names: entity_names, root: root, spec_root: spec_root) }
     let(:entity_names) { %w[my_class] }
     let(:env) { :default }
 
@@ -27,7 +28,7 @@ RSpec.describe RPlate::Commands::Generate::BuildFilename do
       context 'when opts env is spec' do
         let(:env) { :spec }
 
-        it { is_expected.to eq('spec/app/controllers/my_class_spec.rb') }
+        it { is_expected.to eq('spec/lib/my_class_spec.rb') }
       end
     end
 
@@ -52,7 +53,14 @@ RSpec.describe RPlate::Commands::Generate::BuildFilename do
         let(:root) { 'app/controllers' }
         let(:env) { :spec }
 
-        it { is_expected.to eq('spec/app/controllers/whatever/my_class_spec.rb') }
+        it { is_expected.to eq('spec/lib/whatever/my_class_spec.rb') }
+      end
+
+      context 'when the given spec_root differs from default one and spec env' do
+        let(:spec_root) { 'spec/controllers' }
+        let(:env) { :spec }
+
+        it { is_expected.to eq('spec/controllers/whatever/my_class_spec.rb') }
       end
     end
   end

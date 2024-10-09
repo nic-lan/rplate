@@ -20,8 +20,10 @@ RSpec.describe RPlate::CLI do
       { 'required_methods' => required_methods_option,
         'type' => type_option,
         'inflections' => inflections,
-        'root' => 'lib' }
+        'root' => 'lib',
+        'spec_root' => spec_root }
     end
+    let(:spec_root) { 'spec/lib' }
     let(:type_option) { 'class' }
     let(:addional_flags) { [] }
     let(:args) { ['generate'] + class_name + addional_flags }
@@ -53,6 +55,13 @@ RSpec.describe RPlate::CLI do
     context 'when option m is given' do
       let(:required_methods_option) { ['self.perform'] }
       let(:addional_flags) { ['-m', required_methods_option] }
+
+      it_behaves_like 'sends to Generate class'
+    end
+
+    context 'when option s is given' do
+      let(:addional_flags) { ['-s', 'spec/controller'] }
+      let(:spec_root) { 'spec/controller' }
 
       it_behaves_like 'sends to Generate class'
     end
