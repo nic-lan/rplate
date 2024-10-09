@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/nic-lan/rplate/compare/v0.8.3...v0.9.0) (2024-10-09)
+
+
+### Features
+
+* add spec root option ([#236](https://github.com/nic-lan/rplate/issues/236)) ([7c9eaef](https://github.com/nic-lan/rplate/commit/7c9eaef861963774e3d78721c9aa574ad145bc75))
+
 ## [0.8.3](https://github.com/nic-lan/rplate/compare/v0.8.2...v0.8.3) (2024-10-08)
 
 
